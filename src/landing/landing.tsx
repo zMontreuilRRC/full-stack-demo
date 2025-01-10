@@ -33,10 +33,13 @@ function ListDisplay({terms}: {terms: string[]}) {
     // annotate type as a list of JSX elements
     const termListItems: JSX.Element[] = [];
 
-    terms.forEach((term) => {
-        termListItems.push(<li>
-            <a href="#">{term}</a>
-        </li>);
+    // iterative components must always receive a key prop
+    terms.forEach((term, index) => {
+        termListItems.push(<ListTermItem
+                term={term}
+                key={index}
+            />
+        );
     })
 
     return(
@@ -46,5 +49,13 @@ function ListDisplay({terms}: {terms: string[]}) {
                 {termListItems}
             </ol>
         </section>
+    )
+}
+
+function ListTermItem({term}: {term: string}) {
+    return (
+        <li>
+            <a href="#">{term}</a>
+        </li>
     )
 }
