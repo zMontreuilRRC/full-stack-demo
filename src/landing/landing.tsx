@@ -15,7 +15,7 @@ export function Landing() {
     );
 }
 
-function Search() {
+export function Search() {
     return(
         <section className="search">
             <h2>What do you want to learn about?</h2>
@@ -29,7 +29,7 @@ function Search() {
 }
 
 // props are passed as a single object, which may be destructured in parameters
-function ListDisplay({terms}: {terms: string[]}) {
+export function ListDisplay({terms}: {terms: string[]}) {
     // annotate type as a list of JSX elements
     const termListItems: JSX.Element[] = [];
 
