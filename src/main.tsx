@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
+import "./index.css";
 
 // creates the root React component of our app at the #root HTML element
 createRoot(document.getElementById('root')!).render(
