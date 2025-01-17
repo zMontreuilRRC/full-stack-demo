@@ -1,0 +1,302 @@
+[
+    {
+        "id": 0,
+        "title": "SEO (Search Engine Optimization)",
+        "definition": "The process of making a website more visible in search results, also termed improving search rankings.",
+        "isFavourite": false
+    },
+    {
+        "id": 1,
+        "title": "API (Application Programming Interface)",
+        "definition": "A set of functions and protocols that allows the creation of applications that access features or data of an operating system, application, or service.",
+        "isFavourite": false
+    },
+    {
+        "id": 2,
+        "title": "AJAX (Asynchronous JavaScript and XML)",
+        "definition": "A method of building interactive applications by sending and retrieving data from a server asynchronously without interfering with the existing page.",
+        "isFavourite": false
+    },
+    {
+        "id": 3,
+        "title": "DOM (Document Object Model)",
+        "definition": "An API for HTML and XML documents that defines the logical structure of documents and the way they can be accessed and manipulated.",
+        "isFavourite": false
+    },
+    {
+        "id": 4,
+        "title": "CSS (Cascading Style Sheets)",
+        "definition": "A stylesheet language used to describe the presentation of a document written in HTML or XML.",
+        "isFavourite": false
+    },
+    {
+        "id": 5,
+        "title": "HTML (HyperText Markup Language)",
+        "definition": "The standard markup language for creating web pages and web applications.",
+        "isFavourite": false
+    },
+    {
+        "id": 6,
+        "title": "JavaScript",
+        "definition": "A programming language that enables dynamic content updates, interactive forms, and multimedia on web pages.",
+        "isFavourite": false
+    },
+    {
+        "id": 7,
+        "title": "Node.js",
+        "definition": "A JavaScript runtime built on Chrome's V8 JavaScript engine, allowing JavaScript to run server-side.",
+        "isFavourite": false
+    },
+    {
+        "id": 8,
+        "title": "Promise",
+        "definition": "An object representing the eventual completion or failure of an asynchronous operation.",
+        "isFavourite": false
+    },
+    {
+        "id": 9,
+        "title": "HTTP (HyperText Transfer Protocol)",
+        "definition": "The protocol used for transferring hypertext requests and information on the internet.",
+        "isFavourite": false
+    },
+    {
+        "id": 10,
+        "title": "HTTPS (HyperText Transfer Protocol Secure)",
+        "definition": "An extension of HTTP that uses encryption protocols to secure data transfer on the internet.",
+        "isFavourite": false
+    },
+    {
+        "id": 11,
+        "title": "REST (Representational State Transfer)",
+        "definition": "An architectural style for designing networked applications, relying on stateless communication and predefined operations.",
+        "isFavourite": false
+    },
+    {
+        "id": 12,
+        "title": "JSON (JavaScript Object Notation)",
+        "definition": "A lightweight data-interchange format that is easy for humans to read and write and for machines to parse and generate.",
+        "isFavourite": false
+    },
+    {
+        "id": 13,
+        "title": "CORS (Cross-Origin Resource Sharing)",
+        "definition": "A mechanism that allows restricted resources on a web page to be requested from another domain outside the one the page originated from.",
+        "isFavourite": false
+    },
+    {
+        "id": 14,
+        "title": "Webpack",
+        "definition": "A static module bundler for modern JavaScript applications.",
+        "isFavourite": false
+    },
+    {
+        "id": 15,
+        "title": "Babel",
+        "definition": "A JavaScript compiler that allows you to use next-generation JavaScript today.",
+        "isFavourite": false
+    },
+    {
+        "id": 16,
+        "title": "TypeScript",
+        "definition": "A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.",
+        "isFavourite": false
+    },
+    {
+        "id": 17,
+        "title": "Event Loop",
+        "definition": "A programming construct that waits for and dispatches events or messages in a program.",
+        "isFavourite": false
+    },
+    {
+        "id": 18,
+        "title": "Accessibility",
+        "definition": "The practice of making web content usable by people of all abilities and disabilities.",
+        "isFavourite": false
+    },
+    {
+        "id": 19,
+        "title": "Viewport",
+        "definition": "The user's visible area of a web page, which changes based on the device and screen size.",
+        "isFavourite": false
+    },
+    {
+        "id": 20,
+        "title": "Local Storage",
+        "definition": "A web storage API that allows developers to store data in the browser with no expiration time.",
+        "isFavourite": false
+    },
+    {
+        "id": 21,
+        "title": "Session Storage",
+        "definition": "A web storage API that stores data for the duration of the page session, which is cleared once the tab is closed.",
+        "isFavourite": false
+    },
+    {
+        "id": 22,
+        "title": "Cookie",
+        "definition": "A small piece of data stored on the user's device by the web browser while browsing a website.",
+        "isFavourite": false
+    },
+    {
+        "id": 23,
+        "title": "Service Worker",
+        "definition": "A script that runs in the background of your browser, enabling offline support, push notifications, and background data syncing.",
+        "isFavourite": false
+    },
+    {
+        "id": 24,
+        "title": "Progressive Web App (PWA)",
+        "definition": "A type of application software delivered through the web, built using common web technologies, and intended to work on any platform.",
+        "isFavourite": false
+    },
+    {
+        "id": 25,
+        "title": "Responsive Design",
+        "definition": "An approach to web design that makes web pages render well on a variety of devices and screen sizes.",
+        "isFavourite": false
+    },
+    {
+        "id": 26,
+        "title": "Grid Layout",
+        "definition": "A CSS layout system optimized for creating two-dimensional grid-based designs.",
+        "isFavourite": false
+    },
+    {
+        "id": 27,
+        "title": "Flexbox",
+        "definition": "A CSS layout module that provides a more efficient way to lay out, align, and distribute space among items in a container.",
+        "isFavourite": false
+    },
+    {
+        "id": 28,
+        "title": "Viewport Meta Tag",
+        "definition": "A meta tag in HTML that gives instructions to the browser on how to control the page's dimensions and scaling.",
+        "isFavourite": false
+    },
+    {
+        "id": 29,
+        "title": "WebSocket",
+        "definition": "A protocol that enables two-way communication between a client and server over a single, long-lived connection.",
+        "isFavourite": false
+    },
+    {
+        "id": 30,
+        "title": "GraphQL",
+        "definition": "A query language for your API that allows clients to request exactly the data they need.",
+        "isFavourite": false
+    },
+    {
+        "id": 31,
+        "title": "Middleware",
+        "definition": "Software that acts as a bridge between an operating system or database and applications, especially on a network.",
+        "isFavourite": false
+    },
+    {
+        "id": 32,
+        "title": "Virtual DOM",
+        "definition": "A programming concept where a virtual representation of a UI is kept in memory and synced with the real DOM by a library like React.",
+        "isFavourite": false
+    },
+    {
+        "id": 33,
+        "title": "Hoisting",
+        "definition": "A behavior in JavaScript where variables and function declarations are moved to the top of their containing scope during compilation.",
+        "isFavourite": false
+    },
+    {
+        "id": 34,
+        "title": "Event Bubbling",
+        "definition": "An event propagation method where an event starts from the target element and then bubbles up to the ancestors.",
+        "isFavourite": false
+    },
+    {
+        "id": 35,
+        "title": "Event Capturing",
+        "definition": "An event propagation method where an event starts from the ancestor elements down to the target element.",
+        "isFavourite": false
+    },
+    {
+        "id": 36,
+        "title": "WebAssembly",
+        "definition": "A binary instruction format for a stack-based virtual machine that runs alongside JavaScript, providing a way to execute code at near-native speed.",
+        "isFavourite": false
+    },
+    {
+        "id": 37,
+        "title": "Polyfill",
+        "definition": "A JavaScript library that provides modern functionality on older browsers that do not natively support it.",
+        "isFavourite": false
+    },
+    {
+        "id": 38,
+        "title": "Lazy Loading",
+        "definition": "A design pattern that delays the loading of non-critical resources until they are needed.",
+        "isFavourite": false
+    },
+    {
+        "id": 39,
+        "title": "Infinite Scrolling",
+        "definition": "A technique that automatically loads more content as the user scrolls down a page.",
+        "isFavourite": false
+    },
+    {
+        "id": 40,
+        "title": "Shadow DOM",
+        "definition": "A web standard that enables encapsulation of DOM and styles for web components.",
+        "isFavourite": false
+    },
+    {
+        "id": 41,
+        "title": "Web Component",
+        "definition": "A set of web platform APIs that allow you to create reusable and encapsulated custom elements.",
+        "isFavourite": false
+    },
+    {
+        "id": 42,
+        "title": "Content Security Policy (CSP)",
+        "definition": "A security feature that helps prevent attacks such as cross-site scripting (XSS) by defining allowed content sources.",
+        "isFavourite": false
+    },
+    {
+        "id": 43,
+        "title": "Single Page Application (SPA)",
+        "definition": "A web application that dynamically rewrites a single web page with new data from the server, rather than loading entire new pages.",
+        "isFavourite": false
+    },
+    {
+        "id": 44,
+        "title": "Server-Side Rendering (SSR)",
+        "definition": "A rendering method where HTML is rendered on the server and sent to the client, improving SEO and load times.",
+        "isFavourite": false
+    },
+    {
+        "id": 45,
+        "title": "Client-Side Rendering (CSR)",
+        "definition": "A rendering method where JavaScript renders the content directly in the browser, after downloading the necessary resources.",
+        "isFavourite": false
+    },
+    {
+        "id": 46,
+        "title": "Progressive Enhancement",
+        "definition": "A web development strategy that emphasizes core web page content and functionality while gradually adding more features.",
+        "isFavourite": false
+    },
+    {
+        "id": 47,
+        "title": "Graceful Degradation",
+        "definition": "A design approach that focuses on building advanced features for modern browsers while ensuring a basic experience on older ones.",
+        "isFavourite": false
+    },
+    {
+        "id": 48,
+        "title": "Content Delivery Network (CDN)",
+        "definition": "A system of distributed servers that deliver web content to a user based on geographic location, improving load times.",
+        "isFavourite": false
+    },
+    {
+        "id": 49,
+        "title": "Cross-Site Scripting (XSS)",
+        "definition": "A security vulnerability that allows attackers to inject malicious scripts into websites viewed by other users.",
+        "isFavourite": false
+    }
+]
