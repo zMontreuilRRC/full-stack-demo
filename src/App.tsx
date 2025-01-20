@@ -1,5 +1,5 @@
-import { Nav, Footer} from "./common/common";
-import { Landing } from "./landing/landing"
+import { Nav, Footer} from "./components/common";
+import { Landing } from "./components/landing"
 import "./App.css";
 
 // functions that return JSX are React Components
