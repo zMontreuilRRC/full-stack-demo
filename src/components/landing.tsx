@@ -1,5 +1,5 @@
-import { TermCard } from "../common/term-card";
-import { Term } from "../interfaces/term";
+import { Search } from "./search";
+import { TermList } from "./term-list";
 
 export function Landing() {
     return (
@@ -10,52 +10,13 @@ export function Landing() {
         </header>
         <main>
             <Search />
-            <ListDisplay terms={
+            <h2>Today's Top Terms</h2>
+            <TermList terms={
                 [
-                    // request Terms here
+            // TODO: Populate term list 
                 ] 
             }/>
         </main>
         </>
     );
-}
-
-function Search() {
-    return(
-        <section className="search">
-            <h2>What do you want to learn about?</h2>
-            <form action="#">
-                {/* Note use of closing tags on inputs */}
-                <input type="text" name="field-term" placeholder="Enter a word, phrase, or acronym..." />
-                <input type="submit" value="Search" />
-            </form>
-        </section>
-    );
-}
-
-// props are passed as a single object, which may be destructured in parameters
-function ListDisplay({terms}: {terms: Term[]}) {
-    // annotate type as a list of JSX elements
-    const termListItems: JSX.Element[] = [];
-
-    // iterative components must always receive a key prop
-    terms.forEach((term, index) => {
-        // clicking on the term will expand it and close all others
-        termListItems.push(
-            <TermCard term={term} 
-                isExpanded={true} 
-                onTitleClick={() => null}
-                key={index}
-            />
-        );
-    })
-
-    return(
-        <section className="top-terms">
-            <h2>Today's Top Terms:</h2>
-            <ol className="top-terms__list">
-                {termListItems}
-            </ol>
-        </section>
-    )
 }
