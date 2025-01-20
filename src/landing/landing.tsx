@@ -1,8 +1,6 @@
 import { TermCard } from "../common/term-card";
 import { Term } from "../interfaces/term";
 
-const testTerms = ["SEO", "IDE", "Big O Notation", "Encapsulation", "Repository"];
-
 export function Landing() {
     return (
         <>
@@ -13,12 +11,9 @@ export function Landing() {
         <main>
             <Search />
             <ListDisplay terms={
-                [{
-                    id: 0,
-                    title: "test title",
-                    definition: "test def",
-                    isFavourite: false
-                }] 
+                [
+                    // request Terms here
+                ] 
             }/>
         </main>
         </>
