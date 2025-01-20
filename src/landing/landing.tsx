@@ -1,3 +1,6 @@
+import { TermCard } from "../common/term-card";
+import { Term } from "../interfaces/term";
+
 const testTerms = ["SEO", "IDE", "Big O Notation", "Encapsulation", "Repository"];
 
 export function Landing() {
@@ -9,7 +12,14 @@ export function Landing() {
         </header>
         <main>
             <Search />
-            <ListDisplay terms={testTerms}/>
+            <ListDisplay terms={
+                [{
+                    id: 0,
+                    title: "test title",
+                    definition: "test def",
+                    isFavourite: false
+                }] 
+            }/>
         </main>
         </>
     );
@@ -29,14 +39,17 @@ function Search() {
 }
 
 // props are passed as a single object, which may be destructured in parameters
-function ListDisplay({terms}: {terms: string[]}) {
+function ListDisplay({terms}: {terms: Term[]}) {
     // annotate type as a list of JSX elements
     const termListItems: JSX.Element[] = [];
 
     // iterative components must always receive a key prop
     terms.forEach((term, index) => {
-        termListItems.push(<ListTermItem
-                term={term}
+        // clicking on the term will expand it and close all others
+        termListItems.push(
+            <TermCard term={term} 
+                isExpanded={true} 
+                onTitleClick={() => null}
                 key={index}
             />
         );
@@ -49,13 +62,5 @@ function ListDisplay({terms}: {terms: string[]}) {
                 {termListItems}
             </ol>
         </section>
-    )
-}
-
-function ListTermItem({term}: {term: string}) {
-    return (
-        <li>
-            <a href="#">{term}</a>
-        </li>
     )
 }
