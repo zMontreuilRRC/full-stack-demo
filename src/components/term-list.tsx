@@ -14,7 +14,14 @@ export function TermList({terms} : {terms: Term[]}) {
                 terms.map((term, index) => 
                 <TermCard term={term} 
                     isExpanded={index === expandedTermKey} 
-                    onTitleClick={() => setExpandedTermKey(index)}
+                    onTitleClick={() => {
+                        if (index === expandedTermKey) {
+                            setExpandedTermKey(null)
+                         } else {
+                             setExpandedTermKey(index)
+                         }     
+                        }
+                    }
                     key={index}
                 />
                 )
