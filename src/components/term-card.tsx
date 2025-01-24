@@ -6,9 +6,12 @@ export function TermCard({term, isExpanded, onTitleClick, }
 ) {
     return (
     <div className="term-card">
-        {/* clicking on one card's definition may close the defs for other cards */}
+        {/* clicking on one card's definition closes defs for other cards,
+        navigates to main def page, etc */}
         <h3 onClick={onTitleClick}>
-            {term.title}
+            <button>
+                {term.title}
+            </button>
             {/* TODO: onClick toggles save of term */}
             <ToggleSaveButton onClick={() => null} isSaved={term.isFavourite}/>
         </h3>

@@ -10,23 +10,10 @@ export function Landing() {
         </header>
         <main>
             <Search />
-            <h2>Today's Top Terms</h2>
-            <TermList terms={
-                [
-                    {
-                        "id": 0,
-                        "title": "SEO (Search Engine Optimization)",
-                        "definition": "The process of making a website more visible in search results, also termed improving search rankings.",
-                        "isFavourite": false
-                    },
-                    {
-                        "id": 1,
-                        "title": "API (Application Programming Interface)",
-                        "definition": "A set of functions and protocols that allows the creation of applications that access features or data of an operating system, application, or service.",
-                        "isFavourite": false
-                    }
-                ] 
-            }/>
+            <h2>My Saved terms</h2>
+            <TermList terms={[
+                // TODO: populate with all favourited terms
+            ]}/>
         </main>
         </>
     );
