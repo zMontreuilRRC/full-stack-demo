@@ -1,7 +1,39 @@
-import { TermCard } from "../common/term-card";
+import { TermCard } from "./term-card";
 import { Term } from "../interfaces/term";
+import { useEffect, useState } from "react";
+import { fetchTerms } from "../services/termService";
 
 export function Landing() {
+    // add effect for fetching data
+    // use effects rather than state 
+    const [favouriteTerms, setFavourites] = useState<Term[]>([]);
+
+    // UseEffect triggers whenever the component is rendered
+    useEffect(() => {
+        // defining nested function allows async/await syntax
+        async function getFavourites() {
+            setFavourites([]);
+            const result: Term[] = await fetchTerms();
+            if(!ignore) { 
+                const favourites = result.filter(t => !t.isFavourite);
+                setFavourites(favourites);
+            }
+        }
+
+        // prevents multiple "racing" calls. If multiple requests are made, only the latest is displayed
+        let ignore = false;
+
+        getFavourites();
+
+        // cleanup method invoked after useEffect invocation
+        return () => {
+            ignore = true;
+        }
+        // dependency array
+        // any variables passed to this array that change values will rerun the method
+        // empty array prevents re-rendering loop (because state re-renders the element)
+    }, []);
+
     return (
         <>
         <header>
@@ -10,11 +42,8 @@ export function Landing() {
         </header>
         <main>
             <Search />
-            <ListDisplay terms={
-                [
-                    // request Terms here
-                ] 
-            }/>
+            <h2>My Favourite Terms</h2>
+            <ListDisplay terms={favouriteTerms}/>
         </main>
         </>
     );
