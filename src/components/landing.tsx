@@ -41,9 +41,13 @@ export function Landing() {
             <span>Make complex terms simple to understand!</span>
         </header>
         <main>
-            <Search />
-            <h2>My Favourite Terms</h2>
-            <ListDisplay terms={favouriteTerms}/>
+            <section>
+                <Search />
+            </section>
+            <section>
+                <h2>My Favourite Terms</h2>
+                <ListDisplay terms={favouriteTerms}/>
+            </section>
         </main>
         </>
     );
@@ -51,14 +55,11 @@ export function Landing() {
 
 function Search() {
     return(
-        <section className="search">
-            <h2>What do you want to learn about?</h2>
-            <form action="#">
-                {/* Note use of closing tags on inputs */}
-                <input type="text" name="field-term" placeholder="Enter a word, phrase, or acronym..." />
-                <input type="submit" value="Search" />
-            </form>
-        </section>
+        <form className="search-form" action="#">
+            {/* Note use of closing tags on inputs */}
+            <input type="text" name="field-term" placeholder="Enter a word, phrase, or acronym..." />
+            <input type="submit" value="Search" />
+        </form>
     );
 }
 
@@ -80,11 +81,8 @@ function ListDisplay({terms}: {terms: Term[]}) {
     })
 
     return(
-        <section className="top-terms">
-            <h2>Today's Top Terms:</h2>
-            <ol className="top-terms__list">
-                {termListItems}
-            </ol>
-        </section>
+        <ol className="terms-list">
+            {termListItems}
+        </ol>
     )
 }
