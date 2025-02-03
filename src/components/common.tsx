@@ -1,34 +1,13 @@
+import { useState } from "react";
 import { CheckmarkIcon } from "../assets/checkmark-icon";
 import { DiskIcon } from "../assets/disk-pen-svgrepo-com";
+import { Term } from "../interfaces/term";
+import { TermCard } from "./term-card";
 
 export function Footer() {
     return(<footer>
         Complexicon &#169; Me, 2025
     </footer>);
-}
-
-export function Nav() {
-    return(<nav>
-         <div className="page-links">
-            <span>
-                <a href="#">Home</a>
-            </span>
-            <span>
-                <a href="#">Top Terms</a>
-            </span>
-            <span>
-                <a href="#">My Terms</a>
-            </span>
-            <span>
-                <a href="#">My Contexts</a>
-            </span>
-        </div>
-        <div className="user-management-links">
-            <span>
-                <a href="#">Log In</a>
-            </span>
-        </div>
-    </nav>);
 }
 
 export function ToggleSaveButton({onClick, isSaved} : {
@@ -40,4 +19,33 @@ export function ToggleSaveButton({onClick, isSaved} : {
             {isSaved ? <CheckmarkIcon /> : <DiskIcon />}
         </button>
     );
+}
+
+// props are passed as a single object, which may be destructured in parameters
+export function TermListDisplay({terms}: {terms: Term[]}) {
+    const [expandedId, setExpandedId] = useState<number|null>(null);
+
+    // annotate type as a list of JSX elements
+    // map is the best means of creating a component array
+    const termListItems: JSX.Element[] = terms.map((term) => {
+        return (
+            <TermCard
+                term={term} 
+                isExpanded={term.id === expandedId} 
+                onTitleClick={ 
+                    () => {
+                        term.id !== expandedId ? setExpandedId(term.id) : setExpandedId(null)
+                    }
+                }
+                key={term.id} 
+            />
+            // all iterated components should have a Key provided
+        )
+    });
+
+    return(
+        <ol className="terms-list">
+            {termListItems}
+        </ol>
+    )
 }
