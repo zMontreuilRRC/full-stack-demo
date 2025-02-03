@@ -1,10 +1,11 @@
-export function Search({searchValue, handleSearchChange}
+export function Search({searchValue, handleSearchChange, handleSubmit}
     : {
         searchValue: string, 
-        handleSearchChange: (newValue: string) => void
+        handleSearchChange: (newValue: string) => void,
+        handleSubmit: () => void
     }) {
     return(
-        <form className="search-form" action="#">
+        <form className="search-form">
             {/* Note use of closing tags on inputs */}
             <input type="text" 
                 name="field-term" 
@@ -12,7 +13,12 @@ export function Search({searchValue, handleSearchChange}
                 value={searchValue}
                 onChange={e => handleSearchChange(e.target.value)}
             />
-            <input type="submit" value="Search" />
+            <button onClick={e => {
+                e.preventDefault();
+                 handleSubmit()
+                 }}>
+                    Search
+            </button>
         </form>
     );
 }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Search } from "./components/search";
 import { Term } from "./interfaces/term";
 import { terms as termData } from "./services/terms";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 
 
@@ -11,6 +12,13 @@ import "./App.css";
 function App() {
   const [terms] = useState<Term[]>(termData);
   const [searchValue, setSearchValue] = useState<string>("");
+  const navigate = useNavigate(); 
+
+  const doSearch = () => {
+    if(searchValue.trim()) {
+        navigate(`/terms/search?value=${searchValue}`)
+    }
+  }  
 
   return (
       <>
@@ -24,6 +32,7 @@ function App() {
                   <Search  
                       searchValue={searchValue}
                       handleSearchChange={setSearchValue}
+                      handleSubmit={doSearch}
                   />
                   <TermListDisplay 
                       terms= {
