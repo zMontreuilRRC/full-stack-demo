@@ -8,7 +8,8 @@ export function Nav() {
 
     const doSearch = () => {
         if(searchValue.trim()) {
-            navigate(`/terms/search?value=${searchValue}`)
+            navigate(`/terms/search?value=${searchValue}`);
+            setSearchValue("");
         }
     }
 
@@ -32,7 +33,7 @@ export function Nav() {
             </div>
             <Search
                 searchValue={searchValue}
-                handleSearchChange={e => setSearchValue(e)}
+                handleSearchChange={setSearchValue}
                 handleSubmit={doSearch}
             />
         </nav>

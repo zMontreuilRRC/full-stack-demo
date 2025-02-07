@@ -14,18 +14,21 @@ function App() {
     const navigate = useNavigate(); 
     const doSearch = () => {
         if(searchValue.trim()) {
+            setSearchValue("");
             navigate(`/terms/search?value=${searchValue}`)
         }
     }  
     
     const termFilter = (termEle: Term) => {
-        return searchValue.trim() !== "" && 
-            termEle.title.toLowerCase().includes(searchValue.toLowerCase().trim()
-        )
+        if(searchValue.trim()) {
+            return termEle.title.toLowerCase().includes(searchValue.toLowerCase().trim())
+        } else {
+            return false;
+        }
     }
 
-    const { terms, toggleFavouriteTerm } = useTerms(termFilter);
-  return (
+    const { terms, fetchTerms, toggleFavouriteTerm } = useTerms(termFilter);
+    return (
       <>
           <header>
               <h1>Complexicon</h1>
@@ -36,7 +39,10 @@ function App() {
                   {/* invoking setSearchValue updates the state of the search */}
                   <Search  
                       searchValue={searchValue}
-                      handleSearchChange={setSearchValue}
+                      handleSearchChange={e => {
+                        setSearchValue(e);
+                        fetchTerms();
+                      }}
                       handleSubmit={doSearch}
                   />
                   <TermListDisplay 

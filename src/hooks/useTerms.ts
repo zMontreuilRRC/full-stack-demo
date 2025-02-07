@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Term } from "../interfaces/term";
 import * as TermService from "../services/termService";
 
-export function useTerms(filterFn? : (term: Term) => Boolean) {
+export function useTerms(filterFn? : ((term: Term) => Boolean)|null) {
     const [terms, updateTerms] = useState<Term[]>([]);
 
     const fetchTerms = async() => {
@@ -33,12 +33,12 @@ export function useTerms(filterFn? : (term: Term) => Boolean) {
 
     // useEffect only needs to be used when first getting terms. It doesn't need favouriteTerms as
     // a dependency since modifying a term can just manually update state
+    // note: useEffect triggers multiple times when in Strict Mode
     useEffect(() => {
-        console.log("effect");
         fetchTerms();
     }, []);
 
-    return { terms, toggleFavouriteTerm };
+    return { terms, fetchTerms, toggleFavouriteTerm };
 }
 
 /** NOTES **

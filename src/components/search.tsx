@@ -16,7 +16,7 @@ export function Search({searchValue, handleSearchChange, handleSubmit}
             <button onClick={e => {
                 e.preventDefault();
                  handleSubmit()
-                 }}>
+                }}>
                     Search
             </button>
         </form>
