@@ -25,8 +25,7 @@ export function useTerms(filterFn? : (term: Term) => Boolean) {
             await TermService.toggleTermSave(id);
 
             // re-query after updating
-            const terms = await TermService.fetchTerms();
-            updateTerms(terms);
+            await fetchTerms();
         } catch(errorObject) {
 
         }

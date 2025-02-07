@@ -8,7 +8,6 @@ export function SearchResult() {
     const [searchParams] = useSearchParams();
     const value = searchParams.get("value");
     if(value) {
-    
         const searchFilter = (termEle: Term) => {
             return termEle.title.toLowerCase().includes(
                     value.toLowerCase().trim()

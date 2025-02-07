@@ -2,24 +2,29 @@ import { TermListDisplay} from "./components/common";
 import { useState } from "react";
 import { Search } from "./components/search";
 import { Term } from "./interfaces/term";
-import { terms as termData } from "./services/terms";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
+import { useTerms } from "./hooks/useTerms";
 
 
 // functions that return JSX are React Components
 // files must have .tsx extension
 function App() {
-  const [terms] = useState<Term[]>(termData);
-  const [searchValue, setSearchValue] = useState<string>("");
-  const navigate = useNavigate(); 
-
-  const doSearch = () => {
-    if(searchValue.trim()) {
-        navigate(`/terms/search?value=${searchValue}`)
+    const [searchValue, setSearchValue] = useState<string>("");
+    const navigate = useNavigate(); 
+    const doSearch = () => {
+        if(searchValue.trim()) {
+            navigate(`/terms/search?value=${searchValue}`)
+        }
+    }  
+    
+    const termFilter = (termEle: Term) => {
+        return searchValue.trim() !== "" && 
+            termEle.title.toLowerCase().includes(searchValue.toLowerCase().trim()
+        )
     }
-  }  
 
+    const { terms, toggleFavouriteTerm } = useTerms(termFilter);
   return (
       <>
           <header>
@@ -35,15 +40,8 @@ function App() {
                       handleSubmit={doSearch}
                   />
                   <TermListDisplay 
-                      terms= {
-                          searchValue.trim() 
-                          ? terms.filter(t => {
-                                  return t.title.toLowerCase().includes(
-                                      searchValue.toLowerCase().trim()
-                              )}
-                          )
-                          : []
-                      }
+                      terms={terms}
+                      onSaveClick={toggleFavouriteTerm}
                   />
               </section>
           </main>
