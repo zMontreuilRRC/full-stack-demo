@@ -17,6 +17,13 @@ export async function fetchTerms(): Promise<Term[]> {
     return await data;
 }
 
+export async function getFavouriteTerms() {
+    const allData = await data;
+    // this filter should occur in the db
+    const favourites = allData.filter(t => t.isFavourite);
+    return favourites;
+}
+
 export async function toggleTermSave(termId: number) {
     const termToSave = data.find(t => t.id === termId);
 
