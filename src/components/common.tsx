@@ -22,7 +22,8 @@ export function ToggleSaveButton({onClick, isSaved} : {
 }
 
 // props are passed as a single object, which may be destructured in parameters
-export function TermListDisplay({terms}: {terms: Term[]}) {
+export function TermListDisplay({terms, onSaveClick}: 
+    {terms: Term[], onSaveClick: (id: number) => {}}) {
     const [expandedId, setExpandedId] = useState<number|null>(null);
 
     // annotate type as a list of JSX elements
@@ -37,6 +38,7 @@ export function TermListDisplay({terms}: {terms: Term[]}) {
                         term.id !== expandedId ? setExpandedId(term.id) : setExpandedId(null)
                     }
                 }
+                onSaveClick={onSaveClick}
                 key={term.id} 
             />
             // all iterated components should have a Key provided

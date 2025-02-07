@@ -1,26 +1,30 @@
 import { TermListDisplay } from "../common";
 import { useSearchParams } from "react-router-dom";
-import { terms as termData } from "../../services/terms.ts";
+import { useTerms } from "../../hooks/useTerms.ts";
+import { Term } from "../../interfaces/term.ts";
 
 export function SearchResult() {
     // c.f. "useParams" which uses specific route parameters only
     const [searchParams] = useSearchParams();
     const value = searchParams.get("value");
-
     if(value) {
+    
+        const searchFilter = (termEle: Term) => {
+            return termEle.title.toLowerCase().includes(
+                    value.toLowerCase().trim()
+                );
+        }
+
+        const {terms, toggleFavouriteTerm} = useTerms(searchFilter);
+    
         return(
             <main>
                 <h2>Results for "{value}"</h2>
                 <TermListDisplay 
                 terms= {
-                    value.trim() 
-                    ? termData.filter(t => {
-                        return t.title.toLowerCase().includes(
-                            value.toLowerCase().trim()
-                        )}
-                    )
-                    : []
+                    terms
                 }
+                onSaveClick={toggleFavouriteTerm}
                 />
             </main>
         )

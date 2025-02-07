@@ -2,9 +2,9 @@ import { TermListDisplay } from "../common";
 import { useTerms } from "../../hooks/useTerms";
 
 export function AllTerms() {
-    const { terms } = useTerms();
+    const { terms, toggleFavouriteTerm } = useTerms();
 
     return(
-        <TermListDisplay terms={terms} />
+        <TermListDisplay terms={terms} onSaveClick={toggleFavouriteTerm} />
     )
 }

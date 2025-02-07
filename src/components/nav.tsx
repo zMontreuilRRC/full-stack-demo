@@ -10,7 +10,7 @@ export function Nav() {
         if(searchValue.trim()) {
             navigate(`/terms/search?value=${searchValue}`)
         }
-      }
+    }
 
     return(
         <nav>

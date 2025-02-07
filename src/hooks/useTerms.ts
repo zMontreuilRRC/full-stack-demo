@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import { Term } from "../interfaces/term";
 import * as TermService from "../services/termService";
 
-export function useTerms() {
+export function useTerms(filterFn? : (term: Term) => Boolean) {
     const [terms, updateTerms] = useState<Term[]>([]);
 
     const fetchTerms = async() => {
         try {
-            const result = await TermService.fetchTerms();
+            let result = await TermService.fetchTerms();
+
+            if(filterFn) {
+                result = result.filter(filterFn);
+            }
+
             updateTerms(result);
         } catch(errorObject) {
             // display error

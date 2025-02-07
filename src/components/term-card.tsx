@@ -1,8 +1,20 @@
 import { Term } from "../interfaces/term";
 import { ToggleSaveButton } from "./common";
 
-export function TermCard({term, isExpanded, onTitleClick, } 
-    : {term: Term, isExpanded: boolean, onTitleClick: (id: number) => void}
+// to try: props can be set up as an interface: see https://chatgpt.com/share/67a65920-225c-800e-ad98-1c086fd8944e
+export function TermCard(
+    {
+        term, 
+        isExpanded, 
+        onTitleClick,
+        onSaveClick
+    } 
+    : {
+        term: Term, 
+        isExpanded: boolean, 
+        onTitleClick: (id: number) => void,
+        onSaveClick: (id: number) => void,
+    }
 ) {
     return (
     <div className="term-card">
@@ -12,7 +24,7 @@ export function TermCard({term, isExpanded, onTitleClick, }
             {/* TODO: onClick toggles save of term */}
             <ToggleSaveButton 
             // while we would normally want to add saving terms to the TermCard, the state needs to know when a term has been updated
-                onClick={() => null} 
+                onClick={() => onSaveClick(term.id)} 
                 isSaved={term.isFavourite}
             />
         </h3>
