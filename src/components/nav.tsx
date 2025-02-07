@@ -1,6 +1,17 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import { Search } from "./search";
+import { useState } from "react";
 
 export function Nav() {
+    const [searchValue, setSearchValue] = useState<string>("");
+    const navigate = useNavigate();
+
+    const doSearch = () => {
+        if(searchValue.trim()) {
+            navigate(`/terms/search?value=${searchValue}`)
+        }
+      }
+
     return(
         <nav>
             <div className="page-links">
@@ -19,6 +30,11 @@ export function Nav() {
                     <a href="#">Log In</a>
                 </span>
             </div>
+            <Search
+                searchValue={searchValue}
+                handleSearchChange={e => setSearchValue(e)}
+                handleSubmit={doSearch}
+            />
         </nav>
     );
 }

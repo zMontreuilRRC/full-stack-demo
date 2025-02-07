@@ -64,6 +64,11 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 0 3px rgba(0, 123, 255, 0.3);
 }
 
+.search-and-list {
+  max-width: 80%;
+  margin: auto;
+}
+
 /* FOOTER */
 footer {
   position: fixed;
@@ -82,4 +87,14 @@ nav .page-links {
 
 nav span {
   margin: 0.5em;
+}
+
+nav .search-form {
+  max-width: 50%;
+}
+
+nav .search-form input {
+  display: inline;
+  max-width: 50%;
+  margin: 0 2px;
 }

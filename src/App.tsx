@@ -27,7 +27,7 @@ function App() {
               <span>Make complex terms simple to understand!</span>
           </header>
           <main>
-              <section>
+              <section className="search-and-list">
                   {/* invoking setSearchValue updates the state of the search */}
                   <Search  
                       searchValue={searchValue}
