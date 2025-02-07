@@ -11,6 +11,7 @@ export function TermCard({term, isExpanded, onTitleClick, }
             {term.title}
             {/* TODO: onClick toggles save of term */}
             <ToggleSaveButton 
+            // while we would normally want to add saving terms to the TermCard, the state needs to know when a term has been updated
                 onClick={() => null} 
                 isSaved={term.isFavourite}
             />

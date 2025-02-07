@@ -16,3 +16,13 @@ export async function fetchTerms(): Promise<Term[]> {
     // return await termResponse.json() as Term[];
     return await data;
 }
+
+export async function toggleTermSave(termId: number) {
+    const termToSave = data.find(t => t.id === termId);
+
+    if(termToSave) {
+        termToSave.isFavourite = !termToSave.isFavourite;
+    } else {
+        throw new Error(`Term not found with id ${termId}`);
+    }
+}
