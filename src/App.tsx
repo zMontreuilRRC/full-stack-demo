@@ -27,6 +27,8 @@ function App() {
         }
     }
     
+    // normally we would add in the search value as the dependency but we use the effect
+    // to attach the debounce instead
     const { 
         terms, 
         fetchTerms, 
@@ -34,7 +36,7 @@ function App() {
         updateTerms
     } = useTerms([], termFilter);
 
-    // see debounce notes
+    // this is used to initially attach the debounce to the fetchTerms call
     useEffect(() => {
         const debounceSearch = setTimeout(() => {
             if(searchValue.trim()) {

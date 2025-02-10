@@ -11,7 +11,7 @@ export function MyTerms() {
     // TODO: request only favourited terms to reduce load
     return(
         <TermListDisplay 
-            terms={terms.filter(t => t.isFavourite)} 
+            terms={terms} 
             onSaveClick={toggleFavouriteTerm}
         />
     )
