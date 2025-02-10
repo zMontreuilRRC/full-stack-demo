@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { Term } from "../interfaces/term";
 import * as TermService from "../services/termService";
 
-export function useTerms(filterFn? : ((term: Term) => Boolean)|null) {
+// filter function can be passed in as callback to filter down resulting terms
+// dependencies may be passed in to force re-query
+export function useTerms(
+    dependencies: any[] = [],
+    filterFn? : ((term: Term) => Boolean)|null,
+) {
     const [terms, updateTerms] = useState<Term[]>([]);
 
     const fetchTerms = async() => {
@@ -34,9 +39,10 @@ export function useTerms(filterFn? : ((term: Term) => Boolean)|null) {
     // useEffect only needs to be used when first getting terms. It doesn't need favouriteTerms as
     // a dependency since modifying a term can just manually update state
     // note: useEffect triggers multiple times when in Strict Mode
+    // Added optional dependencies so that these may be passed to the effect if needed
     useEffect(() => {
         fetchTerms();
-    }, []);
+    }, [...dependencies]);
 
     return { terms, fetchTerms, toggleFavouriteTerm };
 }
@@ -52,5 +58,6 @@ export function useTerms(filterFn? : ((term: Term) => Boolean)|null) {
  * USEEFFECT will invoke the moment a component is rendered. 
  * The second array will list dependencies of the effect, that is, all "reacting" 
  * elements that the effect handles. useEffect will only invoke on the INITIAL rendering
- * of a component -- it well then only re-invoke if a DEPENDENCY value changes.
+ * of a component -- it well then only re-invoke if a DEPENDENCY value changes.'
+ * 
  */

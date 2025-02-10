@@ -17,7 +17,13 @@ export function SearchResult() {
             );
         };
 
-        const {terms, toggleFavouriteTerm} = useTerms(searchFilter);
+        /**
+         *  useTerms() must use value as a dependency, because navigating to this page repeatedly
+         * does not re-render the component automatically. However, if we change the search
+         * value, if will 
+         * */ 
+
+        const {terms, toggleFavouriteTerm} = useTerms([value], searchFilter);
     
         return(
             <main>

@@ -7,7 +7,7 @@ export function MyTerms() {
         return termEle.isFavourite;
     }
 
-    const { terms, toggleFavouriteTerm } = useTerms(termFilter);
+    const { terms, toggleFavouriteTerm } = useTerms([], termFilter);
     // TODO: request only favourited terms to reduce load
     return(
         <TermListDisplay 
