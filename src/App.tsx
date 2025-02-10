@@ -1,5 +1,5 @@
 import { TermListDisplay} from "./components/common";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search } from "./components/search";
 import { Term } from "./interfaces/term";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ function App() {
     const doSearch = () => {
         if(searchValue.trim()) {
             setSearchValue("");
-            navigate(`/terms/search?value=${searchValue}`)
+            navigate(`/terms/search?value=${searchValue}`);
         }
     }  
     
@@ -26,8 +26,27 @@ function App() {
             return false;
         }
     }
+    
+    const { 
+        terms, 
+        fetchTerms, 
+        toggleFavouriteTerm, 
+        updateTerms
+    } = useTerms([], termFilter);
 
-    const { terms, fetchTerms, toggleFavouriteTerm } = useTerms(termFilter);
+    // see debounce notes
+    useEffect(() => {
+        const debounceSearch = setTimeout(() => {
+            if(searchValue.trim()) {
+                fetchTerms();
+            } else {
+                updateTerms([]);
+            }
+        }, 500);
+
+        return () => clearTimeout(debounceSearch);
+    }, [searchValue]);
+
     return (
       <>
           <header>
@@ -41,7 +60,6 @@ function App() {
                       searchValue={searchValue}
                       handleSearchChange={e => {
                         setSearchValue(e);
-                        fetchTerms();
                       }}
                       handleSubmit={doSearch}
                   />

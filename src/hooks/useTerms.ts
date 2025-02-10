@@ -44,7 +44,7 @@ export function useTerms(
         fetchTerms();
     }, [...dependencies]);
 
-    return { terms, fetchTerms, toggleFavouriteTerm };
+    return { terms, updateTerms, fetchTerms, toggleFavouriteTerm };
 }
 
 /** NOTES **
