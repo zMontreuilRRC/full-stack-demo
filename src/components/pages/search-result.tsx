@@ -8,6 +8,12 @@ export function SearchResult() {
     // need to change state when navigating to the page from its own location (re-searching).
     // c.f. "useParams" which uses specific route parameters only
     const [searchParams] = useSearchParams();
+
+    /**
+     * NOTE: Value can appear as "state" (since its update will cause re-querying of terms)
+     * but it is not stored in state by the app. Instead the URL passes down the variable
+     * (like a prop)
+     **/ 
     const value = searchParams.get("value");
 
     if(value) {
@@ -18,9 +24,9 @@ export function SearchResult() {
         };
 
         /**
-         *  useTerms() must use value as a dependency, because navigating to this page repeatedly
-         * does not re-render the component automatically. However, if we change the search
-         * value, if will 
+         * useTerms() must use value as a dependency, because navigating to this page repeatedly
+         * does not unmount the entire component -- it will only change the Value.
+         * For this reason, value is kept as a dependency.
          * */ 
 
         const {terms, toggleFavouriteTerm} = useTerms([value], searchFilter);

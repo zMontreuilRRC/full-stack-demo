@@ -1,4 +1,5 @@
 # Effects
+See https://react.dev/learn/synchronizing-with-effects
 ## Definition
 Effects allow the *specification of side effects* for components. This essentially allows functions to be invoked on the rendering of a component.
 

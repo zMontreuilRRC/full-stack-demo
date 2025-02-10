@@ -18,16 +18,17 @@ export function TermCard(
 ) {
     return (
     <div className="term-card">
+        <div className="card-header">
         {/* clicking on one card's definition may close the defs for other cards */}
-        <h3 onClick={() => onTitleClick(term.id)}>
-            {term.title}
-            {/* TODO: onClick toggles save of term */}
+            <h3 onClick={() => onTitleClick(term.id)}>
+                {term.title}
+            </h3>
             <ToggleSaveButton 
             // while we would normally want to add saving terms to the TermCard, the state needs to know when a term has been updated
                 onClick={() => onSaveClick(term.id)} 
                 isSaved={term.isFavourite}
             />
-        </h3>
+        </div>
         { isExpanded 
             ? <p>{term.definition}</p>
             : null
