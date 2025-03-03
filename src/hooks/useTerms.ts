@@ -27,7 +27,7 @@ export function useTerms(
         }
     }
 
-    const toggleFavouriteTerm = async(id: number): Promise<void> => {
+    const toggleFavouriteTerm = async(id: number) => {
         try {
             await TermService.toggleTermSave(id);
             // re-query after updating

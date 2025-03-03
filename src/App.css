@@ -108,3 +108,32 @@ nav .search-form input {
 .card-header button {
   margin: 10px 0;
 }
+
+.error {
+  color: red;
+  font-size: 1.5em;
+}
+
+.popup-message {
+  animation: fade-in 0.2s;
+  position: fixed;
+  text-align: center;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  font-size: 1.5em;
+  border: 1px solid black;
+  background-color: ghostwhite;
+  width: 90%;
+  padding: 5px;
+  margin: auto;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  } 
+}

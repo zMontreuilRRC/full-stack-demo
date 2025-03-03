@@ -29,6 +29,7 @@ function App() {
     
     // normally we would add in the search value as the dependency but we use the effect
     // to attach the debounce instead
+    // TODO: decorate this behaviour onto a term list page?
     const { 
         terms, 
         fetchTerms, 
