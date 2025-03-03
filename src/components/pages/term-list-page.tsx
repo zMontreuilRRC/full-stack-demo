@@ -2,10 +2,17 @@ import { TermListDisplay } from "../common";
 import { useTerms } from "../../hooks/useTerms";
 import { Term } from "../../interfaces/term";
 
+/** 
+ * this "wrapper" page allows us to explicitly set page filters without
+ * having to restate the save function on click
+ */
 export function TermListPage(
-    dependencies: Term[],
-    filterFn: ((term: Term) => Boolean)|null,
-    title: string
+    {title, dependencies, filterFn}:
+    {
+       title: string,
+       dependencies: any[],
+       filterFn: ((term: Term) => Boolean)|null,
+    } 
 ) {
     const { terms, toggleFavouriteTerm } = useTerms(dependencies, filterFn);
 

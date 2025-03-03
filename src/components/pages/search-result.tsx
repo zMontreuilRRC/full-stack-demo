@@ -1,6 +1,5 @@
-import { TermListDisplay } from "../common";
+import { TermListPage } from "./term-list-page.tsx";
 import { useSearchParams } from "react-router-dom";
-import { useTerms } from "../../hooks/useTerms.ts";
 import { Term } from "../../interfaces/term.ts";
 
 export function SearchResult() {
@@ -28,19 +27,13 @@ export function SearchResult() {
          * does not unmount the entire component -- it will only change the Value.
          * For this reason, value is kept as a dependency.
          * */ 
-
-        const {terms, toggleFavouriteTerm} = useTerms([value], searchFilter);
     
         return(
-            <main>
-                <h2>Results for "{value}"</h2>
-                <TermListDisplay 
-                terms= {
-                    terms
-                }
-                onSaveClick={toggleFavouriteTerm}
-                />
-            </main>
+            <TermListPage
+                title = {`Results for "${value}"`}
+                dependencies={[value]}
+                filterFn={searchFilter}
+            />
         )
     } else {
         return(<h1>Sorry, something went wrong</h1>);
