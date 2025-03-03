@@ -4,5 +4,7 @@
 ### Module 3
 - **Multi-page** browsing using React Router
   - A Search Bar that is available throughout the app (common layout?)
-  - A small modal that can show up when the user Saves/unSaves a term (Portal)
-  - Some data to indicate the logged in user (Context)
+
+### Module 4 - Advanced React Tools
+- **Context** that tracks the user's credentials
+- **Portals** to allow modals to pop up when the user saves/removes a term 
