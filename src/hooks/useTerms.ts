@@ -9,11 +9,11 @@ export function useTerms(
     filterFn? : ((term: Term) => Boolean)|null,
 ) {
     const [terms, updateTerms] = useState<Term[]>([]);
+    const [error, setError] = useState<string | null>();
 
     const fetchTerms = async() => {
         try {
             let result = await TermService.fetchTerms();
-
             if(filterFn) {
                 result = result.filter(filterFn);
                 console.log(typeof(result));
@@ -23,20 +23,18 @@ export function useTerms(
             // re-render a component not passed a filter function...why?
             updateTerms([...result]);
         } catch(errorObject) {
-            // display error
+            setError(`${errorObject}`);
         }
     }
 
-    const toggleFavouriteTerm = async(id: number) => {
+    const toggleFavouriteTerm = async(id: number): Promise<void> => {
         try {
-            // **TODO**: should show error if unsuccesful
             await TermService.toggleTermSave(id);
-
             // re-query after updating
             await fetchTerms();
         } catch(errorObject) {
-
-        }
+            setError(`${errorObject}`);
+        }   
     }
 
     // useEffect only needs to be used when first getting terms. It doesn't need favouriteTerms as
@@ -47,7 +45,7 @@ export function useTerms(
         fetchTerms();
     }, [...dependencies]);
 
-    return { terms, updateTerms, fetchTerms, toggleFavouriteTerm };
+    return { terms, error, updateTerms, fetchTerms, toggleFavouriteTerm };
 }
 
 /** NOTES **
