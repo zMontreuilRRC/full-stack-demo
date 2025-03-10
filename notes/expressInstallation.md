@@ -47,3 +47,15 @@ mkdir apps/frontend apps/backend
     // . . . 
 }
 ```
+
+## Initializing the Backend
+### 1. `npm init -y` in `apps/backend`
+### 2. Install tools using `npm install <tools> -w @complexicon/backend`
+
+## Consolidating Configuration
+Configuration with NPM workspaces means that we have a centralized package manager.
+### 1. Delete the `package-lock.json` and `node_modules` directories and files
+### 2. Run a full installation with `npm install`
+
+## Consolidating TypeScript:
+Create the central and module TS configs as committed

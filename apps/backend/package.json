@@ -8,6 +8,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "description": ""
+  "type": "module",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
 }
