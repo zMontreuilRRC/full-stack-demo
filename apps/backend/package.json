@@ -1,11 +1,8 @@
 {
-  "name": "complexicon",
-  "workspaces": ["apps/*"],
+  "name": "@complexicon/backend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start:frontend": "npm run dev --workspace=@complexicon/frontend",
-    "start:backend": "npm run dev --workspace=@complexicon/backend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

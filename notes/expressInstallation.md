@@ -46,3 +46,4 @@ mkdir apps/frontend apps/backend
     "name": "@<appname>/frontend",
     // . . . 
 }
+```
