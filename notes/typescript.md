@@ -31,3 +31,5 @@ In `tsconfig.json` the `references` prop can specify distinct projects to refere
 ```
 These can point to directories containing a `tsconfig.json` file (or the file).
 This allows multiple projects to be compiled in concert. Consider reading further in monorepo.
+
+Note that full configuration can be shown at any time with `npx tsc --showConfig`
