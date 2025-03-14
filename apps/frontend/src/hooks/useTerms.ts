@@ -22,6 +22,8 @@ export function useTerms(
             // this spread of the newly created result is necessary in order to correctly
             // re-render a component not passed a filter function...why?
             updateTerms([...result]);
+            const resp = await fetch("/api/");
+            console.log(resp);
         } catch(errorObject) {
             setError(`${errorObject}`);
         }
