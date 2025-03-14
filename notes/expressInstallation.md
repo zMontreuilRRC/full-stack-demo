@@ -31,12 +31,12 @@ In `/package.json`:
 }
 ```
 
-### 3. Create the `apps` directory and subdirectories:
+#### 3. Create the `apps` directory and subdirectories:
 ```bash
 mkdir apps/frontend apps/backend
 ```
 
-## Migrating the Frontend
+### Migrating the Frontend
 ### 1. Move the frontend files to `apps/frontend`
 
 ### 2. Update the `apps/frontend/package.json` "name" config:
@@ -48,14 +48,20 @@ mkdir apps/frontend apps/backend
 }
 ```
 
-## Initializing the Backend
+### Initializing the Backend
 ### 1. `npm init -y` in `apps/backend`
 ### 2. Install tools using `npm install <tools> -w @complexicon/backend`
 
-## Consolidating Configuration
+### Consolidating Configuration
 Configuration with NPM workspaces means that we have a centralized package manager.
-### 1. Delete the `package-lock.json` and `node_modules` directories and files
-### 2. Run a full installation with `npm install`
+#### 1. Delete the `package-lock.json` and `node_modules` directories and files
+#### 2. Run a full installation with `npm install`
 
-## Consolidating TypeScript:
+### Consolidating TypeScript:
 Create the central and module TS configs as committed
+
+### Managing the Monorepo Front-To-Back Connection
+There are some advantages to creating a proxy in frontend that will communicate with the backend:
+1. Browser security will block API calls between different origins (CORS)
+2. The API in the frontend may fetch from a shortened URL (e.g. "`fetch('/api/data')`)
+3. Cookies can be made from the same origin 
