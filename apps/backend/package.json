@@ -17,6 +17,8 @@
     "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "@types/morgan": "^1.9.9",
+    "express": "^4.21.2",
+    "morgan": "^1.10.0"
   }
 }
