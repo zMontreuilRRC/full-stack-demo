@@ -28,20 +28,22 @@ export const createTerm = async(term: {
 }
 
 export const updateTerm = async(
-    id: number,
+    id: string,
     term: {title: string, definition: string, isFavourite: boolean}
 ): Promise<Term> => {
-    const index: number = tempTerms.findIndex(t => t.id === id);
+    const parsedId = Number.parseInt(id);
+    const index: number = tempTerms.findIndex(t => t.id === parsedId);
     if(index === -1){
         throw new Error(`Term with id ${id} not found`);
     }
 
-    tempTerms[index] = {id, ...term};
+    tempTerms[index] = {id: parsedId, ...term};
     return tempTerms[index];
 }
 
-export const deleteTerm = async(id: number): Promise<void> => {
-    const index: number = tempTerms.findIndex(t => t.id === id);
+export const deleteTerm = async(id: string): Promise<void> => {
+    const parsedId = Number.parseInt(id);
+    const index: number = tempTerms.findIndex(t => t.id === parsedId);
 
     if(index === -1){
         throw new Error(`Term with id ${id} not found`);
