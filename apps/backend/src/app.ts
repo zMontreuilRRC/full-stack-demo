@@ -1,6 +1,7 @@
 import express, {Express} from "express";
 import morgan from "morgan";
 import setupSwagger from "../config/swagger";
+import termRoutes from "./api/v1/routes/termRoutes";
 
 const app: Express = express();
 
@@ -13,5 +14,7 @@ setupSwagger(app);
 app.get("/", (_req, res) => {
     res.send("Got response from backend!");
 });
+
+app.use("/api/v1/terms", termRoutes);
 
 export default app;

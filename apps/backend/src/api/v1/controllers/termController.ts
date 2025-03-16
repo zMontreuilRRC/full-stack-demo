@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import * as termService from "../services/termService";
 
 export const getAllTerms = async(
-    req: Request,
+    _req: Request,
     res: Response,
     next: NextFunction
 ): Promise<void> => {
