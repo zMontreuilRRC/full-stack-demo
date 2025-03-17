@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import {Term} from "../services/termService";
 import * as termService from "../services/termService";
 
 export const getAllTerms = async(
@@ -13,6 +14,23 @@ export const getAllTerms = async(
         next(error);
     }
 };
+
+export const getTermById = async(
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    try {
+        const term: Term | null = await termService.getTermById(req.params.id);
+        if(term) {
+            res.status(200).json({message: "Got Term", data: term});
+        } else{
+            throw new Error("Term not found");
+        }
+    } catch(error) {
+        next(error);
+    }
+}
 
 export const createTerm = async(
     req: Request,

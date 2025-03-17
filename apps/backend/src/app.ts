@@ -15,6 +15,6 @@ app.get("/", (_req, res) => {
     res.send("Got response from backend!");
 });
 
-app.use("/api/v1/terms", termRoutes);
+app.use("/api/v1", termRoutes);
 
 export default app;

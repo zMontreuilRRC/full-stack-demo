@@ -13,6 +13,20 @@ export const fetchAllTerms = async(): Promise<Term[]> => {
     return tempTerms;
 }
 
+export const getTermById = async(id: string): Promise<Term | null> => {
+    try {
+        const term: Term | undefined = tempTerms.find(t => t.id === Number.parseInt(id));
+
+        if(!term) {
+            return null;
+        } else{
+            return term;
+        }
+    } catch(error) {
+        throw new Error(`Failed to fetch term with id ${id}`);
+    }
+}
+
 export const createTerm = async(term: {
     title: string,
     definition: string
