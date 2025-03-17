@@ -16,14 +16,11 @@ export function useTerms(
             let result = await TermService.fetchTerms();
             if(filterFn) {
                 result = result.filter(filterFn);
-                console.log(typeof(result));
             }
 
             // this spread of the newly created result is necessary in order to correctly
             // re-render a component not passed a filter function...why?
             updateTerms([...result]);
-            const resp = await fetch("/api/");
-            console.log(resp);
         } catch(errorObject) {
             setError(`${errorObject}`);
         }

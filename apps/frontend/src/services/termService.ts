@@ -1,20 +1,21 @@
 import { Term } from "../interfaces/term";
 import data from "./terms.json";
 
-// const BASE_URL = "";
+type TermResponse = {message: String, data: Term[]};
+
+const BASE_URL = "/api";
+const TERM_ENDPOINT = "/v1/terms"
 
 export async function fetchTerms(): Promise<Term[]> {
-    // placeholder method gets all users from terms json
-    // const endpoint: string = "./terms.json";
+    const termResponse: Response = await fetch(`${BASE_URL}${TERM_ENDPOINT}`);
 
-    // const termResponse: Response = await fetch(`${BASE_URL}${endpoint}`);
+    if(!termResponse.ok) {
+        throw new Error("Failed to fetch terms");
+    }
 
-    // if(!termResponse.ok) {
-    //     throw new Error("Failed to fetch terms");
-    // }
-
+    const json = await termResponse.json() as TermResponse;
     // return await termResponse.json() as Term[];
-    return await data;
+    return json.data;
 }
 
 export async function getFavouriteTerms() {
