@@ -1,7 +1,7 @@
 import { Term } from "../interfaces/term";
 import data from "./terms.json";
 
-type TermResponse = {message: String, data: Term[]};
+type TermResponseJSON = {message: String, data: Term[]};
 
 const BASE_URL = "/api";
 const TERM_ENDPOINT = "/v1/terms"
@@ -13,7 +13,7 @@ export async function fetchTerms(): Promise<Term[]> {
         throw new Error("Failed to fetch terms");
     }
 
-    const json = await termResponse.json() as TermResponse;
+    const json: TermResponseJSON = await termResponse.json();
     // return await termResponse.json() as Term[];
     return json.data;
 }
@@ -23,6 +23,17 @@ export async function getFavouriteTerms() {
     // this filter should occur in the db
     const favourites = allData.filter(t => t.isFavourite);
     return favourites;
+}
+
+export async function getTermById(termId: number) {
+    const termResponse: Response = await fetch(`${BASE_URL}${TERM_ENDPOINT}/${termId}`);
+
+    if(!termResponse.ok) {
+        throw new Error(`Failed to fetch term with id ${termId}`);
+    }
+
+    const json: TermResponseJSON = await termResponse.json();
+    return json.data;
 }
 
 export async function toggleTermSave(termId: number) {
