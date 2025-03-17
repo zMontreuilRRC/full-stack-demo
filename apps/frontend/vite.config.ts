@@ -9,9 +9,12 @@ export default defineConfig({
   server: {
     // look at setting up a proxy so that any requests to the api are redirected
     proxy: {
-      '*/api': {
+      // proxy all requests that start with "/api" that are made to backend
+      // This will need to be updated in prod, and use a secure option
+      '/api': {
         target: "http://localhost:3000",
         changeOrigin: true,
+        secure: false
       }
     }
   },
