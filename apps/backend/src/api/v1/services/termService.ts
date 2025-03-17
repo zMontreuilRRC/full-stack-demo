@@ -47,6 +47,7 @@ export const updateTerm = async(
 ): Promise<Term> => {
     const parsedId = Number.parseInt(id);
     const index: number = tempTerms.findIndex(t => t.id === parsedId);
+
     if(index === -1){
         throw new Error(`Term with id ${id} not found`);
     }

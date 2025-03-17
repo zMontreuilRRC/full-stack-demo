@@ -1,7 +1,7 @@
 import { Term } from "../interfaces/term";
-import data from "./terms.json";
 
-type TermResponseJSON = {message: String, data: Term[]};
+type TermsResponseJSON = {message: String, data: Term[]};
+type TermResponseJSON = {message: String, data: Term};
 
 const BASE_URL = "/api";
 const TERM_ENDPOINT = "/v1/terms"
@@ -13,19 +13,13 @@ export async function fetchTerms(): Promise<Term[]> {
         throw new Error("Failed to fetch terms");
     }
 
-    const json: TermResponseJSON = await termResponse.json();
+    const json: TermsResponseJSON = await termResponse.json();
     // return await termResponse.json() as Term[];
     return json.data;
 }
 
-export async function getFavouriteTerms() {
-    const allData = await data;
-    // this filter should occur in the db
-    const favourites = allData.filter(t => t.isFavourite);
-    return favourites;
-}
 
-export async function getTermById(termId: number) {
+export async function getTermById(termId: number): Promise<Term> {
     const termResponse: Response = await fetch(`${BASE_URL}${TERM_ENDPOINT}/${termId}`);
 
     if(!termResponse.ok) {
@@ -36,12 +30,23 @@ export async function getTermById(termId: number) {
     return json.data;
 }
 
-export async function toggleTermSave(termId: number) {
-    const termToSave = data.find(t => t.id === termId);
+export async function updateTerm(term: Term) {
+    const headers:Headers = new Headers();
+    headers.append("Content-Type", "application/json");
 
-    if(termToSave) {
-        termToSave.isFavourite = !termToSave.isFavourite;
-    } else {
-        throw new Error(`Term not found with id ${termId}`);
+    const updateResponse: Response = await fetch(
+        `${BASE_URL}${TERM_ENDPOINT}/${term.id}`,
+        {
+            method: "PUT",
+            body: JSON.stringify({...term}),
+            headers: headers
+        }
+    );
+        
+    if(!updateResponse.ok) {
+        throw new Error(`Failed to update term with id ${term.id}`);
     }
+
+    const json: TermResponseJSON = await updateResponse.json();
+    return json.data;
 }

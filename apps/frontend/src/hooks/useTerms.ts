@@ -28,7 +28,10 @@ export function useTerms(
 
     const toggleFavouriteTerm = async(id: number) => {
         try {
-            await TermService.toggleTermSave(id);
+            const term: Term = await TermService.getTermById(id)
+            term.isFavourite = !term.isFavourite;
+            await TermService.updateTerm(term);
+
             // re-query after updating
             await fetchTerms();
         } catch(errorObject) {

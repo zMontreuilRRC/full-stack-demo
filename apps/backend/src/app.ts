@@ -7,6 +7,7 @@ const app: Express = express();
 
 // add morgan middleware, combined format logs info about each HTTP request
 app.use(morgan("combined"));
+app.use(express.json());
 
 // invoke swagger middleware for serving docs in /api-docs
 setupSwagger(app);
