@@ -14,7 +14,6 @@ export async function fetchTerms(): Promise<Term[]> {
     }
 
     const json: TermsResponseJSON = await termResponse.json();
-    // return await termResponse.json() as Term[];
     return json.data;
 }
 
