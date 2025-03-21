@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CheckmarkIcon } from "../assets/checkmark-icon";
 import { DiskIcon } from "../assets/disk-pen-svgrepo-com";
-import { Term } from "../interfaces/term";
+import { Term } from "@prisma/client";
 import { TermCard } from "./term-card";
 
 export function Footer() {

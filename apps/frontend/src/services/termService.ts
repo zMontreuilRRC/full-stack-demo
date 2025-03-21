@@ -1,4 +1,4 @@
-import { Term } from "../interfaces/term";
+import { Term } from "@prisma/client";
 
 type TermsResponseJSON = {message: String, data: Term[]};
 type TermResponseJSON = {message: String, data: Term};

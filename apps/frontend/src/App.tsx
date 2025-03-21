@@ -1,7 +1,7 @@
 import { TermListDisplay} from "./components/common";
 import { useEffect, useState } from "react";
 import { Search } from "./components/search";
-import { Term } from "./interfaces/term";
+import { Term } from  "@prisma/client";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import { useTerms } from "./hooks/useTerms";

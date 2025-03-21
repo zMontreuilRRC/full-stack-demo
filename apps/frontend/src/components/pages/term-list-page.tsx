@@ -1,6 +1,6 @@
 import { TermListDisplay } from "../common";
 import { useTerms } from "../../hooks/useTerms";
-import { Term } from "../../interfaces/term";
+import { Term } from "@prisma/client";
 import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import PopupMessage from "../popup-message";
@@ -31,8 +31,8 @@ export function TermListPage(
             setPopupText("Error getting term.");
         } else {
             setPopupText(toggledTerm?.isFavourite ? 
-                `Added ${toggledTerm.title} to favourites` : 
-                `Removed ${toggledTerm.title} from favourites` 
+                `Removed ${toggledTerm.title} from favourites`: 
+                `Added ${toggledTerm.title} to favourites`  
             );
         }
 

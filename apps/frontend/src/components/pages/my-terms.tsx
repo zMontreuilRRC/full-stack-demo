@@ -1,4 +1,4 @@
-import { Term } from "../../interfaces/term";
+import { Term } from "@prisma/client";
 import { TermListPage } from "./term-list-page";
 
 export function MyTerms() {

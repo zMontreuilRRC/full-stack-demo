@@ -1,6 +1,6 @@
 import { TermListPage } from "./term-list-page.tsx";
 import { useSearchParams } from "react-router-dom";
-import { Term } from "../../interfaces/term.ts";
+import { Term } from "@prisma/client";
 
 export function SearchResult() {
     // since this page has no state at the top it never changes, even when re-routed to.

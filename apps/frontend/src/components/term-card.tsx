@@ -1,4 +1,4 @@
-import { Term } from "../interfaces/term";
+import { Term } from "@prisma/client";
 import { ToggleSaveButton } from "./common";
 
 // to try: props can be set up as an interface: see https://chatgpt.com/share/67a65920-225c-800e-ad98-1c086fd8944e
