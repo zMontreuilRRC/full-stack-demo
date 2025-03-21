@@ -5,6 +5,8 @@
       "module": "commonjs",
       "outDir": "./dist",
       "baseUrl": "./",
+      "sourceMap": true,
+      "lib": ["ESNext"],
       "paths": {
         "*": ["*"]
       }
