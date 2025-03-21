@@ -1,21 +1,18 @@
-import tempTerms from "./tempTerms";
+import { Term, PrismaClient } from "@prisma/client";
 
-// it MAY be desirable to make this a shared definition
-// consider if a Term is identical/extensible between front/backend
-export type Term = {
-    id: number,
-    title: string,
-    definition: string,
-    isFavourite: boolean
-}
+const prisma = new PrismaClient();
 
 export const fetchAllTerms = async(): Promise<Term[]> => {
-    return tempTerms;
+    return prisma.term.findMany();
 }
 
-export const getTermById = async(id: string): Promise<Term | null> => {
+export const getTermById = async(id: number): Promise<Term | null> => {
     try {
-        const term: Term | undefined = tempTerms.find(t => t.id === Number.parseInt(id));
+        const term = prisma.term.findUnique({
+            where: {
+                id: id
+            }
+        });
 
         if(!term) {
             return null;
@@ -27,42 +24,39 @@ export const getTermById = async(id: string): Promise<Term | null> => {
     }
 }
 
-export const createTerm = async(term: {
+export const createTerm = async(termData: {
     title: string,
     definition: string
 }): Promise<Term> => {
-    const newTerm: Term = {
-        id: tempTerms.length + 1, 
-        isFavourite: false,
-        ...term
-    };
+    const newTerm: Term = await prisma.term.create({
+        data: {
+            isFavourite: false,
+            ...termData
+        }
+    });
 
-    tempTerms.push(newTerm);
     return newTerm;
 }
 
 export const updateTerm = async(
-    id: string,
+    id: number,
     term: {title: string, definition: string, isFavourite: boolean}
 ): Promise<Term> => {
-    const parsedId = Number.parseInt(id);
-    const index: number = tempTerms.findIndex(t => t.id === parsedId);
-
-    if(index === -1){
-        throw new Error(`Term with id ${id} not found`);
-    }
-
-    tempTerms[index] = {id: parsedId, ...term};
-    return tempTerms[index];
+    const updateTerm = await prisma.term.update({
+        where: {
+            id: id
+        },
+        data: {
+            ...term
+        }
+    });
+    return updateTerm;
 }
 
-export const deleteTerm = async(id: string): Promise<void> => {
-    const parsedId = Number.parseInt(id);
-    const index: number = tempTerms.findIndex(t => t.id === parsedId);
-
-    if(index === -1){
-        throw new Error(`Term with id ${id} not found`);
-    }
-
-    tempTerms.splice(index, 1);
+export const deleteTerm = async(id: number): Promise<void> => {
+    await prisma.term.delete({
+        where: {
+            id: id
+        }
+    });
 }

@@ -1,4 +1,4 @@
-import { Term } from "./termService";
+import { Term } from "@prisma/client";
 
 const tempTerms: Term[] = [
     {

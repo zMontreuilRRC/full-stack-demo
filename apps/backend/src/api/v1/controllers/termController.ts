@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import {Term} from "../services/termService";
+import {Term} from "@prisma/client";
 import * as termService from "../services/termService";
 
 export const getAllTerms = async(
@@ -21,7 +21,8 @@ export const getTermById = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        const term: Term | null = await termService.getTermById(req.params.id);
+        const term: Term | null = 
+            await termService.getTermById(Number.parseInt(req.params.id));
         if(term) {
             res.status(200).json({message: "Got Term", data: term});
         } else{
@@ -52,7 +53,7 @@ export const updateTerm = async(
 ): Promise<void> => {
     try {
         const updatedTerm = await termService.updateTerm(
-            req.params.id,
+            Number.parseInt(req.params.id),
             req.body
         );
         res.status(200).json({message: "Term updated", data: updatedTerm});
@@ -67,7 +68,7 @@ export const deleteTerm = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        await termService.deleteTerm(req.params.id);
+        await termService.deleteTerm(Number.parseInt(req.params.id));
         res.status(200).json({message: "Term deleted" });
     } catch(error) {
         next(error);
