@@ -8,6 +8,5 @@ export const termSchema: ObjectSchema = Joi.object({
     definition: Joi.string().required().messages({
         "any.required": "Definition is required",
         "string.empty": "Definition cannot be empty"
-    }),
-    isFavourite: Joi.boolean()
+    })
 });
