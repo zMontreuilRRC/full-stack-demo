@@ -25,6 +25,7 @@
     "@prisma/client": "^6.5.0",
     "@types/morgan": "^1.9.9",
     "express": "^4.21.2",
+    "joi": "^17.13.3",
     "morgan": "^1.10.0"
   }
 }
