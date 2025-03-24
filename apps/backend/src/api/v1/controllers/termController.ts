@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import {Term} from "@prisma/client";
 import * as termService from "../services/termService";
+import { successResponse } from "../models/responseModel";
 
 export const getAllTerms = async(
     _req: Request,
@@ -9,7 +10,9 @@ export const getAllTerms = async(
 ): Promise<void> => {
     try{
         const terms = await termService.fetchAllTerms();
-        res.status(200).json({message: "Got terms", data: terms});
+        res.status(200).json(
+            successResponse(terms, "Terms retrieved succesfully")
+        );
     } catch (error) {
         next(error);
     }
@@ -24,7 +27,7 @@ export const getTermById = async(
         const term: Term | null = 
             await termService.getTermById(Number.parseInt(req.params.id));
         if(term) {
-            res.status(200).json({message: "Got Term", data: term});
+            res.json(successResponse(term, "Term retrieved succesfully"));
         } else{
             throw new Error("Term not found");
         }
@@ -40,7 +43,8 @@ export const createTerm = async(
 ): Promise<void> => {
     try {
         const newTerm = await termService.createTerm(req.body);
-        res.status(201).json({message: "Term created", data: newTerm});
+        res.status(201)
+            .json(successResponse(newTerm, "Term created succesfully"));
     } catch(error) {
         next(error);
     }
@@ -56,7 +60,8 @@ export const updateTerm = async(
             Number.parseInt(req.params.id),
             req.body
         );
-        res.status(200).json({message: "Term updated", data: updatedTerm});
+        res.status(200)
+            .json(successResponse(updatedTerm, "Term updated succesfully"));
     } catch(error) {
         next(error);
     }
@@ -69,7 +74,8 @@ export const deleteTerm = async(
 ): Promise<void> => {
     try {
         await termService.deleteTerm(Number.parseInt(req.params.id));
-        res.status(200).json({message: "Term deleted" });
+        res.status(200)
+            .json(successResponse(null, "Term deleted succesfully"));
     } catch(error) {
         next(error);
     }

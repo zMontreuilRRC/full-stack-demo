@@ -11,7 +11,6 @@ app.use(morgan("combined"));
 app.use(express.json());
 
 //add errorhandler middleware
-app.use(errorHandler);
 
 // invoke swagger middleware for serving docs in /api-docs
 setupSwagger(app);
@@ -21,5 +20,7 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/api/v1", termRoutes);
+app.use(errorHandler); //errorhandler catches errors as last element in middleware chain
+// occurs when "next" is invoked
 
 export default app;

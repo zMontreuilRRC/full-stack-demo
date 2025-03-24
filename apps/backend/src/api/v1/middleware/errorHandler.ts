@@ -8,7 +8,7 @@ interface ExtendedError extends Error {
 
 const errorHandler = (
     err: ExtendedError,
-    req: Request,
+    _req: Request,
     res: Response,
     _next: NextFunction
 ): void => {
