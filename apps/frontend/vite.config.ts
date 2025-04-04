@@ -14,7 +14,12 @@ export default defineConfig({
       '/api': {
         target: "http://localhost:3000",
         changeOrigin: true,
-        secure: false
+        secure: false,
+        headers: {
+          // vite strips the Origin header in the local environment
+          // include to allow complex requests to backend around CORS
+          Origin: "http://localhost:5173"
+        }
       }
     }
   },
