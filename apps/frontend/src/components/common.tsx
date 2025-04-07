@@ -3,6 +3,7 @@ import { CheckmarkIcon } from "../assets/checkmark-icon";
 import { DiskIcon } from "../assets/disk-pen-svgrepo-com";
 import { Term } from "@prisma/client";
 import { TermCard } from "./term-card";
+import { SignInButton } from "@clerk/clerk-react";
 
 export function Footer() {
     return(<footer>
@@ -54,5 +55,16 @@ export function TermListDisplay({terms, onSaveClick}:
         <ol className="terms-list">
             {termListItems}
         </ol>
+    )
+}
+
+export function NotSignedIn() {
+    return (
+        <section className="container">
+            <h2>Sign in to view this content.</h2>
+            <SignInButton>
+                <button>Click here to sign in or create an account.</button>
+            </SignInButton>
+        </section>
     )
 }
