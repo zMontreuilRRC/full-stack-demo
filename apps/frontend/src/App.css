@@ -24,7 +24,8 @@ h1, h2, h3 {
   margin-bottom: 0.5em;
 }
 h2 {
-  font-size: 1em;
+  font-size: 1.5em;
+  text-align: center;
 }
 
 a {
@@ -79,6 +80,7 @@ footer {
 nav, nav div {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 nav .page-links {
