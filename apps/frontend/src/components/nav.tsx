@@ -1,6 +1,8 @@
 import { NavLink, useNavigate } from "react-router";
 import { Search } from "./search";
 import { useState } from "react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+
 
 export function Nav() {
     const [searchValue, setSearchValue] = useState<string>("");
@@ -27,9 +29,15 @@ export function Nav() {
                 </NavLink>
             </div>
             <div className="user-management-links">
-                <span>
-                    <a href="#">Log In</a>
-                </span>
+                {/* clerk-provided components */}
+                <SignedOut>
+                    {/* renders when user is signed out */}
+                    <SignInButton />
+                </SignedOut>
+                <SignedIn>
+                    {/* renders when user is signed in */}
+                    <UserButton />
+                </SignedIn>
             </div>
             <Search
                 searchValue={searchValue}
