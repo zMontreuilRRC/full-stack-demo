@@ -1,6 +1,6 @@
 import { TermListDisplay } from "../common";
 import { useTerms } from "../../hooks/useTerms";
-import { Term } from "@prisma/client";
+import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import PopupMessage from "../popup-message";

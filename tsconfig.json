@@ -5,3 +5,5 @@
         {"path": "./apps/frontend"}
     ]
 }
+// this file exists to simply act as an entry point for project references
+// the TypeScript compiler finds the referred apps in oder to compile them together

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Term } from "@prisma/client";
+import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import * as TermService from "../services/termService";
 
 // filter function can be passed in as callback to filter down resulting terms

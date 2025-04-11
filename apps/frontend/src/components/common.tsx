@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CheckmarkIcon } from "../assets/checkmark-icon";
 import { DiskIcon } from "../assets/disk-pen-svgrepo-com";
-import { Term } from "@prisma/client";
+import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { TermCard } from "./term-card";
 import { SignInButton } from "@clerk/clerk-react";
 

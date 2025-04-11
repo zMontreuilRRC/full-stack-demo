@@ -1,4 +1,4 @@
-import { Term } from "@prisma/client";
+import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { TermListPage } from "./term-list-page";
 import { useUser } from "@clerk/clerk-react";
 import { NotSignedIn } from "../common";

@@ -1,4 +1,4 @@
-import { Term } from "@prisma/client";
+import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { ToggleSaveButton } from "./common";
 import { SignedIn } from "@clerk/clerk-react";
 
