@@ -14,8 +14,28 @@ datasource db {
 }
 
 model Term {
-  id  Int @id @default(autoincrement())
-  title String
-  definition String
-  isFavourite Boolean
+  id          Int @id @default(autoincrement())
+  title       String
+  definition  String
+  userTerms   UserTerm[]
+}
+
+// This model does not handle any auth concerns of users, which is dealt with by 
+// clerk. It solely manages the user relationship with other data models
+// this needs to be closely managed to synchronize with external data
+model User {
+  id        String @id
+  userTerms UserTerm[]
+}
+
+// manage many-to-many relationship between objects
+// note inclusion of object and id references, compared to array
+// refs on the principle tables
+model UserTerm {
+  user    User @relation(fields:[userId], references: [id])
+  term    Term @relation(fields:[termId], references: [id])
+  userId  String
+  termId  Int
+
+  @@id([userId, termId])
 }
