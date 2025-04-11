@@ -28,9 +28,9 @@ export const createTerm = async(termData: {
     title: string,
     definition: string
 }): Promise<Term> => {
+    // TODO: update 
     const newTerm: Term = await prisma.term.create({
         data: {
-            isFavourite: false,
             ...termData
         }
     });
