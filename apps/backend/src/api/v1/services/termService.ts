@@ -49,7 +49,7 @@ export const createTerm = async(termData: {
 
 export const updateTerm = async(
     id: number,
-    term: {title: string, definition: string, isFavourite: boolean}
+    term: {title: string, definition: string}
 ): Promise<Term> => {
     const updateTerm = await prisma.term.update({
         where: {
@@ -59,6 +59,7 @@ export const updateTerm = async(
             ...term
         }
     });
+
     return updateTerm;
 }
 
