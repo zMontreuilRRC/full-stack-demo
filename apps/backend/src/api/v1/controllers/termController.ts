@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import {Term} from "@prisma/client";
 import * as termService from "../services/termService";
 import { successResponse } from "../models/responseModel";
 import { toFrontendTerm } from "../types/toFrontendTerm";

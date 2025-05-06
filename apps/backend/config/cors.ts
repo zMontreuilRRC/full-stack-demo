@@ -6,7 +6,7 @@ const corsOptions: CorsOptions = {
     origin: function(origin, callback) {
         const allowedOrigins = [process.env.FRONTEND_URL];
 
-        if(allowedOrigins.includes(origin)) {
+        if(allowedOrigins.includes(origin) || !origin) {
             callback(null, true);
         } else {
             callback(new Error("Not allowed by CORS restriction"), false);
