@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import {Term} from "@prisma/client";
 import * as termService from "../services/termService";
 import { successResponse } from "../models/responseModel";
+import { toFrontendTerm } from "../types/toFrontendTerm";
+import { TermWithUsers } from "../types/termWithUsers";
 
 export const getAllTerms = async(
     _req: Request,
@@ -24,10 +26,11 @@ export const getTermById = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        const term: Term | null = 
+        const term: TermWithUsers | null = 
             await termService.getTermById(Number.parseInt(req.params.id));
         if(term) {
-            res.json(successResponse(term, "Term retrieved succesfully"));
+            const responseTerm = toFrontendTerm(term, req.params.userId);
+            res.json(successResponse(responseTerm, "Term retrieved succesfully"));
         } else{
             throw new Error("Term not found");
         }

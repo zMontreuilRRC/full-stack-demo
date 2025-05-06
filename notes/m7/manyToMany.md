@@ -1,0 +1,34 @@
+# Updating Terms with Users
+## The Frontend Model
+Maintaing a frontend model allows us to leave our routes intact.
+It also abstracts our data so that the frontend does not have to work with any extraneous data -- users to not need to ever read or update other user data, so we prevent that data from reaching the frontend.
+
+Route > Controller > Service > Database
+Front > Front-To-Back > Back > SQL
+
+## Handling Relationships
+**Service** handles the relationship as dictated by the Controller.
+I.e. for a Read route, the Service queries Terms and UserTerms.
+The controller transforms both into a Frontend Term and provides it to the Route.
+
+For an Update, the route recieves a frontend term. The controller sends a request
+to both services to modify the appropriate tables.
+
+## Backend Setup with Terms and Users
+Three models: Terms, Users, UserTerms
+These all filter to a single route set (Terms) because they are the only interactible component of the app in frontend.
+
+## Todo
+1. Update `service` to query multiple elements
+   1. This requires the creation of a new "TermWithUsers" model that allows for the "payload" of multiple tables to be included (see `types/termWithUsers.ts`)
+   2. Add the `include` property to the query object:
+    ```ts
+    export const fetchAllTerms = async(): Promise<TermWithUsers[]> => {
+        return prisma.term.findMany({
+            include: {
+                userTerms: true
+            }
+        });
+    }
+    ```
+

@@ -1,16 +1,25 @@
 import { Term, PrismaClient } from "@prisma/client";
+import { TermWithUsers } from "../types/termWithUsers";
 
 const prisma = new PrismaClient();
 
-export const fetchAllTerms = async(): Promise<Term[]> => {
-    return prisma.term.findMany();
+export const fetchAllTerms = async(): Promise<TermWithUsers[]> => {
+    return prisma.term.findMany({
+        include: {
+            userTerms: true
+        }
+    });
 }
 
-export const getTermById = async(id: number): Promise<Term | null> => {
+// note the return of a TermWithUsers here
+export const getTermById = async(id: number): Promise<TermWithUsers | null> => {
     try {
         const term = prisma.term.findUnique({
             where: {
-                id: id
+                id: id,
+            },
+            include: {
+                userTerms: true
             }
         });
 

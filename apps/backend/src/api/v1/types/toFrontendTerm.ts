@@ -1,10 +1,13 @@
 import { FrontendTerm } from "@shared/types/frontend-term";
-import { Term, UserTerm } from "@prisma/client";
+import { TermWithUsers } from "./termWithUsers";
 
+/**
+ *  This method serves to abstract the many-to-many relationship between
+ * Terms and Users so that the frontend only receives relevant data. 
+ *  */
 export function toFrontendTerm(
-    backendTerm: Term, 
-    userTerms: UserTerm[],
-    userId: string
+    backendTerm: TermWithUsers, 
+    userId?: string
 ): FrontendTerm {
     const {id, title, definition } = backendTerm;
 
@@ -12,6 +15,7 @@ export function toFrontendTerm(
         id: id,
         title: title,
         definition: definition,
-        isFavourite: userTerms.some(ut => ut.userId === userId)
+        isFavourite: typeof userId !== undefined && 
+            backendTerm.userTerms.some(ut => ut.userId === userId)
     }
 }

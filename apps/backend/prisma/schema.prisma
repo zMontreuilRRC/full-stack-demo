@@ -32,8 +32,8 @@ model User {
 // note inclusion of object and id references, compared to array
 // refs on the principle tables
 model UserTerm {
-  user    User @relation(fields:[userId], references: [id])
-  term    Term @relation(fields:[termId], references: [id])
+  user    User @relation(fields:[userId], references: [id], onDelete: Cascade)
+  term    Term @relation(fields:[termId], references: [id], onDelete: Cascade)
   userId  String
   termId  Int
 
