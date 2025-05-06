@@ -18,7 +18,7 @@ to both services to modify the appropriate tables.
 Three models: Terms, Users, UserTerms
 These all filter to a single route set (Terms) because they are the only interactible component of the app in frontend.
 
-## Todo
+## Updating Backend
 1. Update `service` to query multiple elements
    1. This requires the creation of a new "TermWithUsers" model that allows for the "payload" of multiple tables to be included (see `types/termWithUsers.ts`)
    2. Add the `include` property to the query object:
@@ -31,4 +31,5 @@ These all filter to a single route set (Terms) because they are the only interac
         });
     }
     ```
+2. Update `Controller` to accept Terms with Users as returned Data, in this case mapping to `FrontendTerms`.
 

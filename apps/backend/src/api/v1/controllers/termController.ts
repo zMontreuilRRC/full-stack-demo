@@ -4,6 +4,7 @@ import * as termService from "../services/termService";
 import { successResponse } from "../models/responseModel";
 import { toFrontendTerm } from "../types/toFrontendTerm";
 import { TermWithUsers } from "../types/termWithUsers";
+import { FrontendTerm } from "@shared/types/frontend-term";
 
 export const getAllTerms = async(
     _req: Request,
@@ -12,8 +13,12 @@ export const getAllTerms = async(
 ): Promise<void> => {
     try{
         const terms = await termService.fetchAllTerms();
+        const frontendTerms: FrontendTerm[] = terms.map(t =>
+            toFrontendTerm(t)
+        );
+
         res.status(200).json(
-            successResponse(terms, "Terms retrieved succesfully")
+            successResponse(frontendTerms, "Terms retrieved succesfully")
         );
     } catch (error) {
         next(error);
@@ -46,8 +51,9 @@ export const createTerm = async(
 ): Promise<void> => {
     try {
         const newTerm = await termService.createTerm(req.body);
+        const responseTerm = toFrontendTerm(newTerm as TermWithUsers);
         res.status(201)
-            .json(successResponse(newTerm, "Term created succesfully"));
+            .json(successResponse(responseTerm, "Term created succesfully"));
     } catch(error) {
         next(error);
     }
@@ -63,8 +69,9 @@ export const updateTerm = async(
             Number.parseInt(req.params.id),
             req.body
         );
+        const responseTerm = toFrontendTerm(updatedTerm as TermWithUsers);
         res.status(200)
-            .json(successResponse(updatedTerm, "Term updated succesfully"));
+            .json(successResponse(responseTerm, "Term updated succesfully"));
     } catch(error) {
         next(error);
     }
