@@ -13,23 +13,19 @@ export const fetchAllTerms = async(): Promise<TermWithUsers[]> => {
 
 // note the return of a TermWithUsers here
 export const getTermById = async(id: number): Promise<TermWithUsers | null> => {
-    try {
-        const term = prisma.term.findUnique({
-            where: {
-                id: id,
-            },
-            include: {
-                userTerms: true
-            }
-        });
-
-        if(!term) {
-            return null;
-        } else{
-            return term;
+    const term = prisma.term.findUnique({
+        where: {
+            id: id,
+        },
+        include: {
+            userTerms: true
         }
-    } catch(error) {
-        throw new Error(`Failed to fetch term with id ${id}`);
+    });
+
+    if(!term) {
+        return null;
+    } else{
+        return term;
     }
 }
 
