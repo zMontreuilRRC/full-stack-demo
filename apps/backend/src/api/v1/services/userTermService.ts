@@ -22,7 +22,7 @@ export const getUserTerm = async(
     }
 } 
 
-export const addUserTerm =  async(
+export const createUserTerm =  async(
     userId: string,
     termId: number
 ): Promise<UserTerm> => {
@@ -49,7 +49,7 @@ export const addUserTerm =  async(
     return newUserTerm;
 }
 
-export const removeUserTerm = async( 
+export const deleteUserTerm = async( 
     userId: string, 
     termId: number
 ): Promise<void> => {

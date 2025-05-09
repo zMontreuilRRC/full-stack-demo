@@ -9,7 +9,7 @@ export const createUserTerm = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        const newUserTerm: UserTerm = await userTermService.addUserTerm(
+        const newUserTerm: UserTerm = await userTermService.createUserTerm(
             req.body.userId,
             Number.parseInt(req.body.termId)
         );

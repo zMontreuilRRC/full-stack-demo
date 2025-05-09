@@ -1,5 +1,5 @@
 import express, {Router} from "express";
-import { validateRequest } from "../middleware/validate";
+// import { validateRequest } from "../middleware/validate";
 // import { termSchema } from "../validations/termValidation";
 import * as userTermController from "../controllers/userTermController";
 
