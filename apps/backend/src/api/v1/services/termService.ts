@@ -1,7 +1,6 @@
-import { Term, PrismaClient } from "@prisma/client";
+import { Term } from "@prisma/client";
+import prisma from "../../../../prisma/client"
 import { TermWithUsers } from "../types/termWithUsers";
-
-const prisma = new PrismaClient();
 
 export const fetchAllTerms = async(): Promise<TermWithUsers[]> => {
     return prisma.term.findMany({
@@ -33,7 +32,6 @@ export const createTerm = async(termData: {
     title: string,
     definition: string
 }): Promise<Term> => {
-    // TODO: update 
     const newTerm: Term = await prisma.term.create({
         data: {
             ...termData

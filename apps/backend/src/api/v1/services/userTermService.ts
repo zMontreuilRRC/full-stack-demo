@@ -1,6 +1,5 @@
-import { PrismaClient, UserTerm } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { UserTerm } from "@prisma/client";
+import prisma from "../../../../prisma/client";
 
 export const getUserTerm = async(
     userId: string,
