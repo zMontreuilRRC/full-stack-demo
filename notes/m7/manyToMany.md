@@ -40,3 +40,9 @@ These all filter to a single route set (Terms) because they are the only interac
    4. Authorize favourite/un-favourite for users
    5. Favourites are added/removed based on user id
    6. If new user found, add to db
+
+## Building Steps
+1. Update routes/controllers/services to accept user data
+2. Have frontend use and send user auth
+3. Have backend middleware intercept user auth when needed at route
+4. Have backend employ user id in routes

@@ -10,8 +10,8 @@ export const createUserTerm = async(
 ): Promise<void> => {
     try {
         const newUserTerm: UserTerm = await userTermService.addUserTerm(
-            req.params.userId,
-            Number.parseInt(req.params.termId)
+            req.body.userId,
+            Number.parseInt(req.body.termId)
         );
         res.status(201)
             .json(successResponse(newUserTerm, "New UserTerm created succesfully"));
@@ -27,8 +27,8 @@ export const deleteUserTerm = async(
 ): Promise<void> => {
     try {
         await userTermService.removeUserTerm(
-            req.params.userId,
-            Number.parseInt(req.params.termId)
+            req.body.userId,
+            Number.parseInt(req.body.termId)
         );
         res.status(200)
             .json(successResponse(null, "UserTerm deleted succesfully"));
