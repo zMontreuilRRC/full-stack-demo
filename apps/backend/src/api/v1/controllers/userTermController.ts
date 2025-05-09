@@ -26,7 +26,7 @@ export const deleteUserTerm = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        await userTermService.removeUserTerm(
+        await userTermService.deleteUserTerm(
             req.body.userId,
             Number.parseInt(req.body.termId)
         );

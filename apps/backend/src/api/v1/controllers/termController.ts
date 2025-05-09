@@ -6,14 +6,16 @@ import { TermWithUsers } from "../types/termWithUsers";
 import { FrontendTerm } from "@shared/types/frontend-term";
 
 export const getAllTerms = async(
-    _req: Request,
+    req: Request,
     res: Response,
     next: NextFunction
 ): Promise<void> => {
     try{
         const terms = await termService.fetchAllTerms();
+        const userId = req.body.userId;
+
         const frontendTerms: FrontendTerm[] = terms.map(t =>
-            toFrontendTerm(t)
+            toFrontendTerm(t, userId)
         );
 
         res.status(200).json(
@@ -30,10 +32,12 @@ export const getTermById = async(
     next: NextFunction
 ): Promise<void> => {
     try {
+
         const term: TermWithUsers | null = 
             await termService.getTermById(Number.parseInt(req.params.id));
         if(term) {
-            const responseTerm = toFrontendTerm(term, req.params.userId);
+            const userId = req.body.userId;
+            const responseTerm = toFrontendTerm(term, userId);
             res.json(successResponse(responseTerm, "Term retrieved succesfully"));
         } else{
             throw new Error("Term not found");
