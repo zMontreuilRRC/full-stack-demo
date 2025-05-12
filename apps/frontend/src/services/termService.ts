@@ -3,11 +3,19 @@ import { FrontendTerm as Term } from "@shared/types/frontend-term";
 type TermsResponseJSON = {message: String, data: Term[]};
 type TermResponseJSON = {message: String, data: Term};
 
-const BASE_URL = "/api";
-const TERM_ENDPOINT = "/v1/terms"
+const BASE_URL = "/api/v1";
+const TERM_ENDPOINT = "/terms"
 
-export async function fetchTerms(): Promise<Term[]> {
-    const termResponse: Response = await fetch(`${BASE_URL}${TERM_ENDPOINT}`);
+export async function fetchTerms(sessionToken?: string|null): Promise<Term[]> {
+    // include bearer authorization if the user is signed in and a token is passed to the function
+    const termResponse: Response = await fetch(
+        `${BASE_URL}${TERM_ENDPOINT}`,
+        sessionToken? {
+            headers: {
+                Authorization: `Bearer ${sessionToken}`
+            }
+        } : undefined
+    );
 
     if(!termResponse.ok) {
         throw new Error("Failed to fetch terms");
@@ -17,9 +25,15 @@ export async function fetchTerms(): Promise<Term[]> {
     return json.data;
 }
 
-
-export async function getTermById(termId: number): Promise<Term> {
-    const termResponse: Response = await fetch(`${BASE_URL}${TERM_ENDPOINT}/${termId}`);
+export async function getTermById(termId: number, sessionToken?: string|null): Promise<Term> {
+    const termResponse: Response = await fetch(
+        `${BASE_URL}${TERM_ENDPOINT}/${termId}`,
+        sessionToken? {
+            headers: {
+                Authorization: `Bearer ${sessionToken}`
+            }
+        } : undefined
+    );
 
     if(!termResponse.ok) {
         throw new Error(`Failed to fetch term with id ${termId}`);
@@ -29,16 +43,16 @@ export async function getTermById(termId: number): Promise<Term> {
     return json.data;
 }
 
-export async function updateTerm(term: Term) {
-    const headers:Headers = new Headers();
-    headers.append("Content-Type", "application/json");
-
+export async function updateTerm(term: Term, sessionToken: string) {
     const updateResponse: Response = await fetch(
         `${BASE_URL}${TERM_ENDPOINT}/${term.id}`,
         {
             method: "PUT",
             body: JSON.stringify({...term}),
-            headers: headers
+            headers: {
+                ContentType: "application/json",
+                Authorization: `Bearer ${sessionToken}`
+            }
         }
     );
         

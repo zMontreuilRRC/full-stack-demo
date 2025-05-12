@@ -1,4 +1,5 @@
 import express, {Router} from "express";
+// TODO: Add validation schema and middleware
 // import { validateRequest } from "../middleware/validate";
 // import { termSchema } from "../validations/termValidation";
 import * as userTermController from "../controllers/userTermController";

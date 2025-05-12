@@ -24,9 +24,11 @@ export function Nav() {
                 <NavLink to="/terms">
                     All Terms
                 </NavLink>
-                <NavLink to="/terms/my-terms">
-                    My Terms
-                </NavLink>
+                <SignedIn>
+                    <NavLink to="/terms/my-terms">
+                        My Terms
+                    </NavLink>
+                </SignedIn>
             </div>
             <div className="user-management-links">
                 {/* clerk-provided components */}
