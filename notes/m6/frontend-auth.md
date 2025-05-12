@@ -1,2 +1,0 @@
-# Frontend Auth
-## Integrating Clerk

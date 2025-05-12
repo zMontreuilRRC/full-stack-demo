@@ -6,8 +6,16 @@ import { findOrCreateUser } from "../middleware/findOrCreateUser";
 
 const router: Router = express.Router();
 
-router.post("/userTerms", findOrCreateUser, userTermController.createUserTerm);
+router.post(
+    "/terms/:termId/favourite", 
+    findOrCreateUser, 
+    userTermController.createUserTerm
+);
 
-router.delete("/userterms", findOrCreateUser, userTermController.deleteUserTerm);
+router.delete(
+    "/terms/:termId/favourite", 
+    findOrCreateUser, 
+    userTermController.deleteUserTerm
+);
 
 export default router;
