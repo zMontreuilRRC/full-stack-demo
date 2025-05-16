@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ObjectSchema } from "joi";
 
-import { MiddlewareFunction, RequestData } from "../types/express";
+import { MiddlewareFunction, RequestData } from "../../../../types/express";
 
 export const validate = <T>(schema: ObjectSchema<T>, data:T): void => {
     const { error } = schema.validate(data, {abortEarly: false});

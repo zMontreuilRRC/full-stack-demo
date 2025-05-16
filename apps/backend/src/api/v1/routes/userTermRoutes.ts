@@ -8,13 +8,13 @@ import { findOrCreateUser } from "../middleware/findOrCreateUser";
 const router: Router = express.Router();
 
 router.post(
-    "/terms/:termId/favourite", 
+    "/terms/:termId/favourite",
     findOrCreateUser, 
     userTermController.createUserTerm
 );
 
 router.delete(
-    "/terms/:termId/favourite", 
+    "/terms/:termId/favourite",
     findOrCreateUser, 
     userTermController.deleteUserTerm
 );

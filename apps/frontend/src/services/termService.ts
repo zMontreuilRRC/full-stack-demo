@@ -12,8 +12,8 @@ export async function fetchTerms(sessionToken?: string|null): Promise<Term[]> {
         `${BASE_URL}${TERM_ENDPOINT}`,
         sessionToken? {
             headers: {
-                Authorization: `Bearer ${sessionToken}`
-            }
+                Authorization: `Bearer ${sessionToken}`,
+            } 
         } : undefined
     );
 

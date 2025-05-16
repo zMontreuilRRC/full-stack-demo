@@ -1,6 +1,6 @@
 import { Term } from "@prisma/client";
 import prisma from "../../../../prisma/client"
-import { TermWithUsers } from "../types/termWithUsers";
+import { TermWithUsers } from "../../../../types/termWithUsers";
 
 export const fetchAllTerms = async(): Promise<TermWithUsers[]> => {
     return prisma.term.findMany({

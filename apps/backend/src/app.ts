@@ -2,6 +2,7 @@ import express, {Express} from "express";
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
+import { clerkMiddleware } from "@clerk/express";
 
 import corsOptions from "../config/cors";
 import setupSwagger from "../config/swagger";
@@ -12,12 +13,16 @@ import errorHandler from "./api/v1/middleware/errorHandler";
 const app: Express = express();
 
 dotenv.config();
+
 // add morgan middleware, combined format logs info about each HTTP request
 app.use(morgan("combined"));
 app.use(express.json());
 
 //add cors middleware
 app.use(cors(corsOptions));
+
+// add clerk middleware
+app.use(clerkMiddleware());
 
 // invoke swagger middleware for serving docs in /api-docs
 setupSwagger(app);

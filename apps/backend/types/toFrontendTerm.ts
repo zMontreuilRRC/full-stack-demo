@@ -7,7 +7,7 @@ import { TermWithUsers } from "./termWithUsers";
  *  */
 export function toFrontendTerm(
     backendTerm: TermWithUsers, 
-    userId?: string
+    userId?: string | null
 ): FrontendTerm {
     const {id, title, definition } = backendTerm;
 
@@ -15,7 +15,7 @@ export function toFrontendTerm(
         id: id,
         title: title,
         definition: definition,
-        isFavourite: typeof userId !== undefined && 
+        isFavourite: (userId != null) && 
             backendTerm.userTerms.some(ut => ut.userId === userId)
     }
 }

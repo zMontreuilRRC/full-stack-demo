@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import * as termService from "../services/termService";
 import { successResponse } from "../models/responseModel";
-import { toFrontendTerm } from "../types/toFrontendTerm";
-import { TermWithUsers } from "../types/termWithUsers";
+import { toFrontendTerm } from "../../../../types/toFrontendTerm";
+import { TermWithUsers } from "../../../../types/termWithUsers";
 import { FrontendTerm } from "@shared/types/frontend-term";
 
 export const getAllTerms = async(
@@ -11,15 +11,19 @@ export const getAllTerms = async(
     next: NextFunction
 ): Promise<void> => {
     try{
+        //@ts-ignore
+        const {userId} = req.auth;
+
+        //@ts-ignore
+        console.log(req.auth);
         const terms = await termService.fetchAllTerms();
-        const userId = req.body.userId;
 
         const frontendTerms: FrontendTerm[] = terms.map(t =>
             toFrontendTerm(t, userId)
         );
 
         res.status(200).json(
-            successResponse(frontendTerms, "Terms retrieved succesfully")
+            successResponse(frontendTerms, `User id: ${userId}`)
         );
     } catch (error) {
         next(error);
