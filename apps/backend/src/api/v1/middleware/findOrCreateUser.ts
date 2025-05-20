@@ -1,6 +1,7 @@
 import { User } from "@prisma/client";
 import * as userService from "../services/userService";
 import { Request, Response, NextFunction } from "express";
+import { getAuth } from "@clerk/express";
 
 export const findOrCreateUser = async(
     req: Request,
@@ -8,11 +9,15 @@ export const findOrCreateUser = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        const userId: string = req.body.userId;
-        let user : User|null = await userService.getUserById(userId);
-        console.log("Trying to find user");
-        if(!user) {
-            user = await userService.createUser({id: req.body.userId});
+        const auth = getAuth(req);
+        const userId = auth.userId;
+        console.log(`USER: ${userId}`);
+        if(userId) {
+            let backendUser : User|null = await userService.getUserById(userId);
+            if(!backendUser) {
+                backendUser= await userService.createUser({id: userId});
+            }
+            req.userId = userId;
         }
 
         next();

@@ -11,11 +11,8 @@ export const getAllTerms = async(
     next: NextFunction
 ): Promise<void> => {
     try{
-        //@ts-ignore
-        const {userId} = req.auth;
+        const userId = req.userId;
 
-        //@ts-ignore
-        console.log(req.auth);
         const terms = await termService.fetchAllTerms();
 
         const frontendTerms: FrontendTerm[] = terms.map(t =>
@@ -36,11 +33,10 @@ export const getTermById = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-
         const term: TermWithUsers | null = 
             await termService.getTermById(Number.parseInt(req.params.id));
         if(term) {
-            const userId = req.body.userId;
+            const userId = req.userId;
             const responseTerm = toFrontendTerm(term, userId);
             res.json(successResponse(responseTerm, "Term retrieved succesfully"));
         } else{

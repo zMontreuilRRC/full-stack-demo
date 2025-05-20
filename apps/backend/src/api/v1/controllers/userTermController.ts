@@ -9,12 +9,16 @@ export const createUserTerm = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        const newUserTerm: UserTerm = await userTermService.createUserTerm(
-            req.body.userId,
-            Number.parseInt(req.params.termId)
-        );
-        res.status(201)
-            .json(successResponse(newUserTerm, "New UserTerm created succesfully"));
+        if(req.userId) {
+            const newUserTerm: UserTerm = await userTermService.createUserTerm(
+                req.userId,
+                Number.parseInt(req.params.termId)
+            );
+            res.status(201)
+                .json(successResponse(newUserTerm, "New UserTerm created succesfully"));
+        } else {
+            throw new Error("User not found");
+        }
     } catch(error) {
         next(error);
     }
@@ -26,12 +30,16 @@ export const deleteUserTerm = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        await userTermService.deleteUserTerm(
-            req.body.userId,
-            Number.parseInt(req.params.termId)
-        );
-        res.status(200)
-            .json(successResponse(null, "UserTerm deleted succesfully"));
+        if(req.userId) {
+            await userTermService.deleteUserTerm(
+                req.userId,
+                Number.parseInt(req.params.termId)
+            );
+            res.status(200)
+                .json(successResponse(null, "UserTerm deleted succesfully"));
+        } else {
+            throw new Error("User not found");
+        }
     } catch(error) {
         next(error);
     }
