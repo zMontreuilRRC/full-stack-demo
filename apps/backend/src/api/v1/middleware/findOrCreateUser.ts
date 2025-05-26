@@ -11,14 +11,18 @@ export const findOrCreateUser = async(
     try {
         const auth = getAuth(req);
         const userId = auth.userId;
+        
         if(userId) {
             let backendUser : User|null = await userService.getUserById(userId);
             if(!backendUser) {
                 backendUser= await userService.createUser({id: userId});
             }
-            req.userId = userId;
         }
-
+        
+        // If userId not found with auth, set userId to null 
+        // Prevents userId from being included erroneously in the request body
+        req.userId = userId;
+        console.log(`USERID: ${req.userId}`);
         next();
     } catch(error) {
         next(error);

@@ -1,41 +1,50 @@
 import express, {Router} from "express";
 import { validateRequest } from "../middleware/validate";
-import { termSchema } from "../validations/termValidation";
+import { 
+    deleteTermSchema, 
+    getTermByIdSchema, 
+    postTermSchema 
+} from "../validations/termValidation";
 import * as termController from "../controllers/termController";
 import { findOrCreateUser } from "../middleware/findOrCreateUser";
 import { requireAuth } from "@clerk/express";
 
 const router: Router = express.Router();
 
+// Note: Joi validates request components but not authorization
+// therefore we leave user id out of the validation (since clerk alone supplies it)
+
 router.get(
     "/terms", 
-    findOrCreateUser, 
+    findOrCreateUser,
     termController.getAllTerms
 );
 
 router.get(
     "/terms/:id", 
-    findOrCreateUser, 
+    findOrCreateUser,
+    validateRequest(getTermByIdSchema), 
     termController.getTermById
 );
 
 router.post(
     "/terms", 
     requireAuth(),
-    validateRequest(termSchema), 
+    validateRequest(postTermSchema), 
     termController.createTerm
 );
 
 router.put(
     "/terms/:id", 
     requireAuth(),
-    validateRequest(termSchema),
+    validateRequest(postTermSchema),
     termController.updateTerm
 );
 
 router.delete(
     "/terms/:id",
     requireAuth(),
+    validateRequest(deleteTermSchema),
     termController.deleteTerm
 );
 

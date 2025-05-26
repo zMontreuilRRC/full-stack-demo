@@ -21,7 +21,7 @@ export type RequestData<T extends RequestBody = RequestBody> = {
 declare global{
     namespace Express {
         export interface Request {
-            userId?: string;
+            userId?: string|null;
         }
     }
 }

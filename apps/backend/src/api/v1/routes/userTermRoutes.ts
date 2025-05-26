@@ -5,6 +5,8 @@ import express, {Router} from "express";
 import * as userTermController from "../controllers/userTermController";
 import { findOrCreateUser } from "../middleware/findOrCreateUser";
 import { requireAuth } from "@clerk/express";
+import { validateRequest } from "../middleware/validate";
+import { userTermSchema } from "../validations/userTermValidations";
 
 const router: Router = express.Router();
 
@@ -12,13 +14,15 @@ router.post(
     "/terms/:termId/favourite",
     requireAuth(),
     findOrCreateUser, 
+    validateRequest(userTermSchema),
     userTermController.createUserTerm
 );
 
 router.delete(
     "/terms/:termId/favourite",
     requireAuth(),
-    findOrCreateUser, 
+    findOrCreateUser,
+    validateRequest(userTermSchema),
     userTermController.deleteUserTerm
 );
 
