@@ -11,7 +11,6 @@ export const findOrCreateUser = async(
     try {
         const auth = getAuth(req);
         const userId = auth.userId;
-        console.log(`USER: ${userId}`);
         if(userId) {
             let backendUser : User|null = await userService.getUserById(userId);
             if(!backendUser) {

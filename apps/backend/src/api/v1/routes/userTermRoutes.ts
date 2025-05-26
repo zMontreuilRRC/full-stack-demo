@@ -4,17 +4,20 @@ import express, {Router} from "express";
 // import { termSchema } from "../validations/termValidation";
 import * as userTermController from "../controllers/userTermController";
 import { findOrCreateUser } from "../middleware/findOrCreateUser";
+import { requireAuth } from "@clerk/express";
 
 const router: Router = express.Router();
 
 router.post(
     "/terms/:termId/favourite",
+    requireAuth(),
     findOrCreateUser, 
     userTermController.createUserTerm
 );
 
 router.delete(
     "/terms/:termId/favourite",
+    requireAuth(),
     findOrCreateUser, 
     userTermController.deleteUserTerm
 );
