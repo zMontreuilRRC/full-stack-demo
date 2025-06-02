@@ -17,4 +17,4 @@ https://vercel.com/docs/monorepos
     "relatedProjects": ["related-project-id"]
    }
    ```
-5. 
+5. Override necessary commands to build from the root (e.g. `cd ../.. && npm install`)
