@@ -17,4 +17,9 @@ https://vercel.com/docs/monorepos
     "relatedProjects": ["related-project-id"]
    }
    ```
-5. 
+5. Add environent variables for the backend url consumed when in development/deployment
+
+In `.env`:
+```
+VITE_API_BASE_URL=http://localhost:3000
+```
