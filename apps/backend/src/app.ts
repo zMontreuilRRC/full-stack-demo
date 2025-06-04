@@ -36,4 +36,5 @@ app.use("/api/v1", userTermRoutes);
 app.use(errorHandler); //errorhandler catches errors as last element in middleware chain
 // occurs when "next" is invoked
 
+// vercel automatically wraps and uses the app object in deployment
 export default app;

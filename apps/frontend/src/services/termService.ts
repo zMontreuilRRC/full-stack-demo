@@ -3,7 +3,7 @@ import { FrontendTerm as Term } from "@shared/types/frontend-term";
 type TermsResponseJSON = {message: String, data: Term[]};
 type TermResponseJSON = {message: String, data: Term};
 
-const BASE_URL = "/api/v1";
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const TERM_ENDPOINT = "/terms"
 
 export async function fetchTerms(sessionToken?: string|null): Promise<Term[]> {
