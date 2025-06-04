@@ -30,6 +30,17 @@ const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 ```
 
 ## Backend Configuration
+### Vercel-required architecture
+Vercel must import the `app` object from the `/api/index.ts` file:
+
+```ts
+import app from "../src/app";
+// look into changing this via configuration?
+// vercel apparently needs this specific file to run in its deployment
+export default app;
+```
+
+### Prisma Configuration
 Prisma has a caching issue with dependencies on Vercel (see https://www.prisma.io/docs/orm/more/help-and-troubleshooting/vercel-caching-issue)
 
 Add to `package.json`:
