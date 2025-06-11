@@ -1,0 +1,14 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 1em;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+nav span {
+  margin: 0.5em;
+}

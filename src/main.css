@@ -1,5 +1,5 @@
 body {
-  font-family: 'Arial', sans-serif;
+font-family: 'Arial', sans-serif;
   background-color: #f9f9f9;
   color: #333;
   margin: 0.3em;
@@ -62,20 +62,4 @@ input:focus, textarea:focus, select:focus {
   border-color: #007BFF;
   outline: none;
   box-shadow: 0 0 3px rgba(0, 123, 255, 0.3);
-}
-
-/* FOOTER */
-footer {
-  position: fixed;
-  bottom: 0;
-  right: 1em;
-}
-/* NAV */
-nav {
-  display: flex;
-  justify-content: space-around;
-}
-
-nav span {
-  margin: 0.5em;
 }

@@ -1,3 +1,5 @@
+import "./common.css"
+
 export function Footer() {
     return(<footer>
         Complexicon &#169; Me, 2025
