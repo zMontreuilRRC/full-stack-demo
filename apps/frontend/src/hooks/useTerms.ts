@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import * as TermService from "../services/termService";
-import * as TermFavouriteService from "../services/termFavouriteService";
 import { useAuth } from "@clerk/clerk-react";
 
 // filter function can be passed in as callback to filter down resulting terms
 // dependencies may be passed in to force re-query
 export function useTerms(
-    dependencies: any[] = [],
+    dependencies: unknown[],
     filterFn? : ((term: Term) => Boolean)|null,
 ) {
     // extract methods from useAuth() clerk method
@@ -19,7 +18,6 @@ export function useTerms(
         try {
             // get the current user's session token
             let sessionToken = isSignedIn? await getToken() : null;
-            // FetchTerms will need to be updated to include user data
             let result = await TermService.fetchTerms(sessionToken);
             if(filterFn) {
                 result = result.filter(filterFn);
@@ -34,27 +32,14 @@ export function useTerms(
     }
 
     // TODO: Update method to request update based on user login/term status
-    const toggleFavouriteTerm = async(id: number) => {
+    const toggleFavouriteTerm = async(termId: number) => {
         try {
             let sessionToken = isSignedIn? await getToken() : null;
 
             if(!sessionToken) {
                 throw new Error("Not Authorized");
             } else {
-                const term: Term = await TermService.getTermById(id, sessionToken);
-                
-                if(term.isFavourite) {
-                    await TermFavouriteService.deleteFavouriteTerm(
-                        term.id,
-                        sessionToken
-                    );
-                } else {
-                    await TermFavouriteService.addFavouriteTerm(
-                        term.id,
-                        sessionToken
-                    );
-                }
-
+                await TermService.toggleFavouriteTerm(termId, sessionToken);
                 await fetchTerms();
             }
         } catch(errorObject) {
