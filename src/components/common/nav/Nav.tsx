@@ -1,12 +1,6 @@
-import "./common.css"
+import "./Nav.css";
 
-export function Footer() {
-    return(<footer>
-        Complexicon &#169; Me, 2025
-    </footer>);
-}
-
-export function Nav() {
+function Nav() {
     return(<nav>
          <div className="page-links">
             <span>
@@ -29,3 +23,5 @@ export function Nav() {
         </div>
     </nav>);
 }
+
+export default Nav;

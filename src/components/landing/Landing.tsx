@@ -2,6 +2,8 @@ const testTerms = ["SEO", "IDE", "Big O Notation", "Encapsulation", "Repository"
 // TSX files can be written like any other TS file, but can include JSX Elements
 
 // this function returns a JSX element, so it is a Component
+// Components can be of any size, but they should be written in a way in which they are easily reused
+// If you're repeating HTML, make a component instead!
 export function Landing() {
     // Components can only return one JSX element, but that element can have many children
     // This anonymous element has a <header> and <main> as children
@@ -82,4 +84,8 @@ function ListTermItem({term}: {term: string}) {
     )
 }
 
+/* Note: for this course we'll work on the convention of exporting one component
+* per file. Landing exclusively renders ListTermItem, ListDisplay, and Search,
+* but we'll separate these later.
+*/
 export default Landing;

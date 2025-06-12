@@ -1,4 +1,5 @@
-import { Nav, Footer} from "./components/common/common.tsx";
+import Nav from "./components/common/nav/Nav";
+import Footer from "./components/common/footer/Footer";
 import Landing  from "./components/landing/Landing";
 
 // functions that return JSX are React Components
