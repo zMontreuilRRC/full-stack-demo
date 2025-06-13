@@ -1,15 +1,23 @@
 import { NavLink, useNavigate } from "react-router";
-import { Search } from "./search";
-import { useState } from "react";
+import { SearchBar } from "./search-bar/SearchBar";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import { useSearch } from "../hooks/useSearch";
 
 
 export function Nav() {
-    const [searchValue, setSearchValue] = useState<string>("");
+    const { 
+        searchMessages,
+        searchValue, 
+        setSearchValue,
+        trySearch,
+        searching
+    } = useSearch();
     const navigate = useNavigate();
 
+    // the navbar, unlike the main page, will navigate on a succesful search. We extracted this from the search component so we could change behaviour in different parent components
     const doSearch = () => {
-        if(searchValue.trim()) {
+        trySearch();
+        if(searching) {
             navigate(`/terms/search?value=${searchValue}`);
             setSearchValue("");
         }
@@ -41,8 +49,9 @@ export function Nav() {
                     <UserButton />
                 </SignedIn>
             </div>
-            <Search
+            <SearchBar
                 searchValue={searchValue}
+                messages={searchMessages}
                 handleSearchChange={setSearchValue}
                 handleSubmit={doSearch}
             />

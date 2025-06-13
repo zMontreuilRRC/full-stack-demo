@@ -14,9 +14,8 @@ export function usePopup():
         setText(displayText);
         setVisible(true);
 
-        //useRef allows storage of mutable values across renders
+        // useRef allows storage of mutable values across renders
         // in this case track timeout reference id
-
         if(timeoutRef.current) {
             clearTimeout(timeoutRef.current);
         }

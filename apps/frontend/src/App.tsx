@@ -1,6 +1,6 @@
 import { TermListDisplay} from "./components/common";
 import { useEffect, useState } from "react";
-import { Search } from "./components/search";
+import { SearchBar } from "./components/search-bar/SearchBar";
 import { FrontendTerm as Term } from  "@shared/types/frontend-term";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
@@ -59,7 +59,7 @@ function App() {
           <main>
               <section className="search-and-list">
                   {/* invoking setSearchValue updates the state of the search */}
-                  <Search  
+                  <SearchBar  
                       searchValue={searchValue}
                       handleSearchChange={e => {
                         setSearchValue(e);
