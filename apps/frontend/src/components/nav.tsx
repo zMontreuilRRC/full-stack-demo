@@ -1,27 +1,38 @@
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { SearchBar } from "./search-bar/SearchBar";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 import { useSearch } from "../hooks/useSearch";
+import { useEffect, useState } from "react";
 
 
 export function Nav() {
     const { 
-        searchMessages,
         searchValue, 
         setSearchValue,
         trySearch,
-        searching
     } = useSearch();
+
+    const [searchMessages, setSearchMessages] = useState<string[]>([]);
     const navigate = useNavigate();
+    const location = useLocation();
 
     // the navbar, unlike the main page, will navigate on a succesful search. We extracted this from the search component so we could change behaviour in different parent components
     const doSearch = () => {
-        trySearch();
-        if(searching) {
+        const validation = trySearch();
+        if(validation.isValid) {
             navigate(`/terms/search?value=${searchValue}`);
+            setSearchMessages([]);
             setSearchValue("");
+        } else {
+            setSearchMessages(validation.errors);
         }
     }
+
+    // this effect will reset the error message and search value if we navigate at any point
+    useEffect(() => {
+        setSearchValue("");
+        setSearchMessages([]);
+    }, [location]);
 
     return(
         <nav>
