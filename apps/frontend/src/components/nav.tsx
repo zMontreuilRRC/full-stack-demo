@@ -4,7 +4,6 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-reac
 import { useSearch } from "../hooks/useSearch";
 import { useEffect, useState } from "react";
 
-
 export function Nav() {
     const { 
         searchValue, 
