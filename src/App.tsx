@@ -1,8 +1,8 @@
 import { TermListDisplay} from "./components/common";
 import { useState } from "react";
 import { Search } from "./components/search";
-import { Term } from "./interfaces/term";
-import { terms as termData } from "./services/terms";
+import { Term } from "./types/term";
+import { terms as termData } from "./terms/termData";
 import "./App.css";
 
 

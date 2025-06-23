@@ -1,4 +1,12 @@
-import { Term } from "../interfaces/term";
+import { Term } from "../types/term";
+
+/*
+ This array of Terms will serve as placeholder data while we don't have a 
+ backend for our app.
+
+ We'll export it to our App and share it to all pages as a context, so we can
+ update our favourites.
+*/
 
 export const terms: Term[] = [
     {

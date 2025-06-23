@@ -1,4 +1,4 @@
-import { Term } from "../interfaces/term";
+import { Term } from "../types/term";
 import { ToggleSaveButton } from "./common";
 
 export function TermCard({term, isExpanded, onTitleClick, } 
