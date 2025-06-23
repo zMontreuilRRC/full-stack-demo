@@ -1,25 +1,6 @@
 import { useState } from "react";
-import { CheckmarkIcon } from "../assets/checkmark-icon";
-import { DiskIcon } from "../assets/disk-pen-svgrepo-com";
-import { Term } from "../types/term";
-import { TermCard } from "./term-card";
-
-export function Footer() {
-    return(<footer>
-        Complexicon &#169; Me, 2025
-    </footer>);
-}
-
-export function ToggleSaveButton({onClick, isSaved} : {
-    onClick: () => void, 
-    isSaved: boolean}) 
-{
-    return(
-        <button onClick={onClick}>
-            {isSaved ? <CheckmarkIcon /> : <DiskIcon />}
-        </button>
-    );
-}
+import { TermCard } from "../term-card/TermCard";
+import { Term } from "../../../types/term";
 
 // props are passed as a single object, which may be destructured in parameters
 export function TermListDisplay({terms}: {terms: Term[]}) {

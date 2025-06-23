@@ -1,5 +1,5 @@
-import { Term } from "../types/term";
-import { ToggleSaveButton } from "./common";
+import { Term } from "../../../types/term";
+import ToggleSaveButton from "../toggle-save-button/ToggleSaveButton";
 
 export function TermCard({term, isExpanded, onTitleClick, } 
     : {term: Term, isExpanded: boolean, onTitleClick: (id: number) => void}
