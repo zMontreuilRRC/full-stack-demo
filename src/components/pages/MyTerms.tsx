@@ -1,8 +1,10 @@
-import { terms as termData } from "../../terms/termData";
+import { Term } from "../../types/term";
 import { TermListDisplay } from "../common/term-list-display/TermListDisplay";
 
-export function MyTerms() {
+export function MyTerms({terms}: {terms: Term[]}) {
     return(
-        <TermListDisplay terms={termData.filter(t => t.isFavourite)} />
+        <TermListDisplay 
+            terms={terms.filter(t => t.isFavourite)} 
+            />
     )
 }

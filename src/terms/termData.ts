@@ -8,7 +8,7 @@ import { Term } from "../types/term";
  update our favourites.
 */
 
-export const terms: Term[] = [
+export const termData: Term[] = [
     {
         "id": 0,
         "title": "SEO (Search Engine Optimization)",

@@ -18,9 +18,9 @@ export function TermListDisplay({terms}: {terms: Term[]}) {
                         term.id !== expandedId ? setExpandedId(term.id) : setExpandedId(null)
                     }
                 }
+                // all iterated components should have a Key provided
                 key={term.id} 
             />
-            // all iterated components should have a Key provided
         )
     });
 
