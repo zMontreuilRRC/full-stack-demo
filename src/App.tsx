@@ -12,7 +12,7 @@ import { Term } from "./types/term";
 
 function App() {
   // import termData and initialize State to use it
-  const [terms, updateTermData] = useState<Term[]>(termData);
+  const [terms, updateTerms] = useState<Term[]>(termData);
 
   return (
       <Routes>
@@ -21,14 +21,31 @@ function App() {
           <Route path="/" element={<Layout />}>
 
             {/* Renders the App in the Layout */}
-            <Route index element={<Landing terms={terms}/>} />
-
+            <Route index element={
+              <Landing 
+                terms={terms} 
+                updateTerms={updateTerms}
+              />
+              } 
+            />
 
             <Route path="/terms"> 
               {/* Index routes have no extra path (just "/terms" here) */}
-              <Route index element={<AllTerms terms={terms} />} />
+              <Route index element={
+                <AllTerms 
+                  terms={terms}
+                  updateTerms={updateTerms} 
+                />} 
+              />
+              
               {/* Child routes add their path to the parent (e.g. "/terms/my-terms") */}
-              <Route path="my-terms" element={<MyTerms terms={terms}/>} />
+              <Route path="my-terms" element={
+                <MyTerms 
+                  terms={terms}
+                  updateTerms={updateTerms}
+                />
+                } 
+              />
             </Route>
           </Route>
         </Routes>

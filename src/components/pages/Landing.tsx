@@ -3,8 +3,14 @@ import { Term } from "../../types/term";
 import { Search } from "../common/search/Search";
 import { TermListDisplay } from "../common/term-list-display/TermListDisplay";
 
-function Landing({terms}: {terms: Term[]}) {
-    // TODO: Add TermData as Context for all pages, App
+function Landing({
+        terms,
+        updateTerms
+    }:
+    {
+        terms: Term[],
+        updateTerms: React.Dispatch<React.SetStateAction<Term[]>>
+    }) {
     const [searchValue, setSearchValue] = useState<string>("");
 
     return (
@@ -30,6 +36,7 @@ function Landing({terms}: {terms: Term[]}) {
                           )
                           : []
                       }
+                      updateTerms={updateTerms}
                   />
               </section>
           </main>

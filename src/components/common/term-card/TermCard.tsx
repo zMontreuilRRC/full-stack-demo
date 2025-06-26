@@ -1,23 +1,46 @@
 import { Term } from "../../../types/term";
 import ToggleSaveButton from "../toggle-save-button/ToggleSaveButton";
+import "./term-card.css";
 
-export function TermCard({term, isExpanded, onTitleClick, } 
-    : {term: Term, isExpanded: boolean, onTitleClick: (id: number) => void}
+export function TermCard(
+    {
+        term, 
+        isExpanded, 
+        onTitleClick,
+        onSaveClick
+    } 
+    : {
+        term: Term, 
+        isExpanded: boolean, 
+        onTitleClick: () => void,
+        onSaveClick: () => void
+    }
 ) {
     return (
     <div className="term-card">
-        {/* clicking on one card's definition may close the defs for other cards */}
-        <h3 onClick={() => onTitleClick(term.id)}>
+        <div className="term-card-top">
+        {/* 
+        Since we only want one card expanded at a time, "onTitleClick"
+        needs to be passed down from a higher component
+        */}
+        <h3 onClick={onTitleClick}>
             {term.title}
-            {/* TODO: onClick toggles save of term */}
-            <ToggleSaveButton 
-                onClick={() => null} 
-                isSaved={term.isFavourite}
-            />
         </h3>
+    
+        {/* likewise, the state containing all of the terms needs
+        to know if a button's "favourite" status has changed,
+        so we pass down a method to update it. */}
+        <ToggleSaveButton 
+            onClick={onSaveClick} 
+            isSaved={term.isFavourite}
+        />
+        </div>
+
+        {/* Only display the definition if our IsExpanded prop returns True */}
         { isExpanded 
             ? <p>{term.definition}</p>
             : null
         }
-    </div>);
+    </div>
+    );
 }
