@@ -12,8 +12,16 @@ export function AllTerms(
     }
 ) {
     return(
-        <TermListDisplay 
-            terms={terms}
-            updateTerms={updateTerms} />
+        <>
+        <header>
+            <h1>All Terms</h1>
+        </header>
+        <main>
+            <TermListDisplay 
+                terms={terms}
+                updateTerms={updateTerms} 
+                />
+        </main>
+        </>
     )
 }

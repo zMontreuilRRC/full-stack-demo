@@ -12,9 +12,16 @@ export function MyTerms(
     }
 ) {
     return(
-        <TermListDisplay 
-            terms={terms.filter(t => t.isFavourite)}
-            updateTerms={updateTerms} 
-        />
+        <>
+        <header>
+            <h1>My Terms</h1>
+        </header>
+        <main>
+            <TermListDisplay 
+                terms={terms.filter(t => t.isFavourite)}
+                updateTerms={updateTerms} 
+                />
+        </main>
+        </>
     )
 }

@@ -9,6 +9,7 @@ import { MyTerms } from "./components/pages/MyTerms";
 import { termData } from "./terms/termData";
 import Landing from "./components/pages/Landing";
 import { Term } from "./types/term";
+import Module2Example from "./components/pages/Module2Example";
 
 function App() {
   // import termData and initialize State to use it
@@ -28,6 +29,12 @@ function App() {
               />
               } 
             />
+
+            <Route 
+              path="/mod-2-example"
+              element={<Module2Example />}
+            >
+            </Route>
 
             <Route path="/terms"> 
               {/* Index routes have no extra path (just "/terms" here) */}
