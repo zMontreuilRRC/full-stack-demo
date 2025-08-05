@@ -4,6 +4,7 @@ export function Nav() {
     return(
         <nav>
             <div className="page-links">
+                {/* Create an <a> tag that routes to the provided string value */}
                 <NavLink to="/" end>
                     Home
                 </NavLink>
