@@ -12,16 +12,31 @@ import { Term } from "./types/term";
 import Module2Example from "./components/pages/Module2Example";
 
 function App() {
-  // import termData and initialize State to use it
+  // Initialize state with the imported termData, as an array of terms.
+  // We store this in top-level state so this list can be read/updated in any child components
+  // This makes the list of terms "favourites" persist through the session accross pages
   const [terms, updateTerms] = useState<Term[]>(termData);
 
   return (
+    /**
+     * Nested Route Link Structure:
+     * A <Route> renders its Element component when the browser navigates to the 
+     * associated path.
+     * 
+     * Routes can be nested so they "add" onto their paths (so the "/" contains all
+     * paths starting with "/" (all of them), the "/terms" contains all paths 
+     * starting with "/terms", etc.).
+     */
+
       <Routes>
           {/* The root path renders <Layout>. That component contains an <Outlet>
           which will render the elements of their child routes. */}
           <Route path="/" element={<Layout />}>
 
-            {/* Renders the App in the Layout */}
+            {/* 
+              Renders the different pages in the Layout. 
+              index: indicates route at the root of this path (/)
+            */}
             <Route index element={
               <Landing 
                 terms={terms} 
@@ -30,14 +45,16 @@ function App() {
               } 
             />
 
+
             <Route 
               path="/mod-2-example"
               element={<Module2Example />}
             >
             </Route>
 
+              {/* all paths starting with "/terms" */}
             <Route path="/terms"> 
-              {/* Index routes have no extra path (just "/terms" here) */}
+              {/* index: "terms" route */}
               <Route index element={
                 <AllTerms 
                   terms={terms}

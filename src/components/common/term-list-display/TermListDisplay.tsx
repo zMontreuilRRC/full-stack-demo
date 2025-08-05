@@ -3,7 +3,12 @@ import { TermCard } from "../term-card/TermCard";
 import { Term } from "../../../types/term";
 import "./term-list-display.css"
 
-// props are passed as a single object, which may be destructured in parameters
+
+/**
+ * This widely used component takes a list of terms and displays them in a panel.
+ * It receives its terms (and how they're filtered) from props. It controls
+ * which term is expanded, so only one can be expanded at a time.
+ */
 export function TermListDisplay({
         terms,
         updateTerms
@@ -12,6 +17,7 @@ export function TermListDisplay({
         terms: Term[],
         updateTerms: React.Dispatch<React.SetStateAction<Term[]>>
     }) {
+        // Control which term is being expanded (null if none)
     const [expandedId, setExpandedId] = useState<number|null>(null);
 
     /**
@@ -39,7 +45,6 @@ export function TermListDisplay({
         });
     }
 
-    // annotate type as a list of JSX elements
     // When creating an array of components, use the "map" method
     const termListItems: JSX.Element[] = terms.map((term) => {
         return (
@@ -48,7 +53,7 @@ export function TermListDisplay({
                 // check state to see if this term's ID is the same as the expanded
                 isExpanded={term.id === expandedId}
                 
-                // pass down a method that changes the expandedId state if the title is clicked
+                // This method of switching the expandedID is passed down so the term card can catch the event
                 onTitleClick={ 
                     () => {
                         term.id !== expandedId ? 
@@ -62,7 +67,7 @@ export function TermListDisplay({
                     handleTermFavouriteClick(term);
                 }}
 
-                // all iterated coamponents should have a Key provided
+                // all iterated components should have a "key" prop provided
                 key={term.id} 
             />
         )

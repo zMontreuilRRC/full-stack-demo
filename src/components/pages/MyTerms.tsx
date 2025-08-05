@@ -17,6 +17,7 @@ export function MyTerms(
             <h1>My Terms</h1>
         </header>
         <main>
+            {/* Only terms that have the "isFavourite" property as true will be included */}
             <TermListDisplay 
                 terms={terms.filter(t => t.isFavourite)}
                 updateTerms={updateTerms} 
