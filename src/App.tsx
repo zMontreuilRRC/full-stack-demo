@@ -1,12 +1,11 @@
 import { TermListDisplay} from "./components/common";
 import { useEffect, useState } from "react";
 import { SearchBar } from "./components/search-bar/SearchBar";
-import { FrontendTerm as Term } from  "@shared/types/frontend-term";
+import { Term } from  "./types/term";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import { useTerms } from "./hooks/useTerms";
 import { useSearch } from "./hooks/useSearch";
-
 
 // functions that return JSX are React Components
 // files must have .tsx extension
