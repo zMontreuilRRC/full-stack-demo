@@ -1,6 +1,6 @@
 import { TermListPage } from "./term-list-page.tsx";
 import { useSearchParams } from "react-router-dom";
-import { Term } from "../../interfaces/term.ts";
+import { FrontendTerm as Term } from "@shared/types/frontend-term";
 
 export function SearchResult() {
     // since this page has no state at the top it never changes, even when re-routed to.

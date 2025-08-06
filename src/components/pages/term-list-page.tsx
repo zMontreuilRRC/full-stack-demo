@@ -1,9 +1,9 @@
 import { TermListDisplay } from "../common";
 import { useTerms } from "../../hooks/useTerms";
-import { Term } from "../../interfaces/term";
-import { useRef, useState } from "react";
+import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { createPortal } from "react-dom";
 import PopupMessage from "../popup-message";
+import { usePopup } from "../../hooks/usePopup";
 
 /** 
  * this "wrapper" page allows us to explicitly set page filters without
@@ -18,34 +18,26 @@ export function TermListPage(
     } 
 ) {
     const { terms, error, toggleFavouriteTerm } = useTerms(dependencies, filterFn);
-    const [ showPopup, setShowPopup ] = useState<Boolean>(false);
-    const [ popupText, setPopupText ] = useState<string>("");
-    // useRef allows us to store mutable values across multiple renders. 
-    // In this case track the timeout reference id
-    const timeoutRef = useRef<number | null>(null); 
+
+    const {popupVisible, popupText, showPopupWithText} = usePopup();
 
     const displayTogglePopup = (id: Number) => {
         const toggledTerm = terms.find(t => t.id === id);
-
+        let newPopupText = "";
         if(!toggledTerm) {
-            setPopupText("Error getting term.");
+            newPopupText = "Error getting term.";
         } else {
-            setPopupText(toggledTerm?.isFavourite ? 
-                `Added ${toggledTerm.title} to favourites` : 
-                `Removed ${toggledTerm.title} from favourites` 
-            );
+            newPopupText = toggledTerm?.isFavourite ? 
+                `Removed ${toggledTerm.title} from favourites`: 
+                `Added ${toggledTerm.title} to favourites`  
+            ;
         }
+        showPopupWithText(newPopupText);
+    }
 
-        setShowPopup(true);
-        
-        // reset timer if already in use
-        if(timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
-
-        timeoutRef.current = setTimeout(() => {
-            setShowPopup(false);
-        }, 3000)
+    const handleSaveClick = async (id: number) => {
+        await toggleFavouriteTerm(id);
+        displayTogglePopup(id);
     }
 
     return(
@@ -53,20 +45,19 @@ export function TermListPage(
             <h2>{title}</h2>
             <div>
                 {error ? 
-                    <span className="error">Something went wrong ({error})</span>:
+                    <span className="error">Something went wrong: ({error})</span>:
                     <TermListDisplay 
                         terms={terms} 
                         onSaveClick={ 
                             async (id) => {
-                                await toggleFavouriteTerm(id);
-                                displayTogglePopup(id);
+                                await handleSaveClick(id);
                             }
                         } 
                     />
                 }
             </div>
             {/* short-circuit method for creating portal conditionally */}
-            {showPopup && createPortal(
+            {popupVisible && createPortal(
                 <PopupMessage message={popupText} />
             , document.body)}
         </main>

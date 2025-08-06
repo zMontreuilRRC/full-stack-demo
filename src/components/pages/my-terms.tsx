@@ -1,17 +1,27 @@
-import { Term } from "../../interfaces/term";
+import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { TermListPage } from "./term-list-page";
+import { useUser } from "@clerk/clerk-react";
+import { NotSignedIn } from "../common";
 
 export function MyTerms() {
-    const termFilter = (termEle: Term) => {
-        return termEle.isFavourite;
-    }
+    const { isSignedIn, isLoaded } = useUser();
 
-    // TODO: request only favourited terms to reduce load
-    return(
-        <TermListPage
-            title="My Terms"
-            dependencies={[]}
-            filterFn={termFilter}
-        />
-    )
+    if(!isSignedIn) {
+        return <NotSignedIn />
+    } else if(!isLoaded) {
+        return <div>Loading...</div>
+    } else {
+        const termFilter = (termEle: Term) => {
+            return termEle.isFavourite;
+        }
+    
+        // TODO: request only favourited terms to reduce load
+        return(
+            <TermListPage
+                title="My Terms"
+                dependencies={[]}
+                filterFn={termFilter}
+            />
+        )
+    }
 }

@@ -1,35 +1,25 @@
-import { Term } from "../interfaces/term";
-import data from "./terms.json";
+import * as TermRepo from "../apis/termRepo";
+import * as TermFavouriteRepo from "../apis/termFavouriteRepo";
+import { FrontendTerm as Term } from "@shared/types/frontend-term";
 
-// const BASE_URL = "";
-
-export async function fetchTerms(): Promise<Term[]> {
-    // placeholder method gets all users from terms json
-    // const endpoint: string = "./terms.json";
-
-    // const termResponse: Response = await fetch(`${BASE_URL}${endpoint}`);
-
-    // if(!termResponse.ok) {
-    //     throw new Error("Failed to fetch terms");
-    // }
-
-    // return await termResponse.json() as Term[];
-    return await data;
+export async function fetchTerms(sessionToken? : string|null) {
+    const terms = await TermRepo.fetchTerms(sessionToken);
+    return terms;
 }
 
-export async function getFavouriteTerms() {
-    const allData = await data;
-    // this filter should occur in the db
-    const favourites = allData.filter(t => t.isFavourite);
-    return favourites;
-}
-
-export async function toggleTermSave(termId: number) {
-    const termToSave = data.find(t => t.id === termId);
-
-    if(termToSave) {
-        termToSave.isFavourite = !termToSave.isFavourite;
+// as business logic (deciding if the term is favourited or not), this function
+// belongs in the service layer
+export async function toggleFavouriteTerm(termId: number, sessionToken: string) {
+    const term: Term = await TermRepo.getTermById(termId, sessionToken);
+    if(term.isFavourite) {
+        await TermFavouriteRepo.deleteFavouriteTerm(
+            term.id,
+            sessionToken
+        );
     } else {
-        throw new Error(`Term not found with id ${termId}`);
+        await TermFavouriteRepo.addFavouriteTerm(
+            term.id,
+            sessionToken
+        );
     }
 }
