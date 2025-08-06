@@ -1,4 +1,4 @@
-import { TermListPage } from "./term-list-page.tsx";
+import { TermListPage } from "./TermListPage.tsx";
 import { useSearchParams } from "react-router-dom";
 import { FrontendTerm as Term } from "@shared/types/frontend-term";
 
@@ -29,11 +29,13 @@ export function SearchResult() {
          * */ 
     
         return(
-            <TermListPage
-                title = {`Results for "${value}"`}
-                dependencies={[value]}
-                filterFn={searchFilter}
-            />
+            <main>
+                <TermListPage
+                    title = {`Results for "${value}"`}
+                    dependencies={[value]}
+                    filterFn={searchFilter}
+                />
+            </main>
         )
     } else {
         return(<h1>Sorry, something went wrong</h1>);

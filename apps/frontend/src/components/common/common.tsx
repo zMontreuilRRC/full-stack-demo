@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { CheckmarkIcon } from "../assets/checkmark-icon";
-import { DiskIcon } from "../assets/disk-pen-svgrepo-com";
 import { FrontendTerm as Term } from "@shared/types/frontend-term";
-import { TermCard } from "./term-card";
+import { TermCard } from "./TermCard";
 import { SignInButton } from "@clerk/clerk-react";
+import { CheckmarkIcon } from "../../assets/checkmark-icon";
+import { DiskIcon } from "../../assets/disk-pen-svgrepo-com";
 
 export function Footer() {
     return(<footer>

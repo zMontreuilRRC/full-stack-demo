@@ -2,7 +2,6 @@ import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { ToggleSaveButton } from "./common";
 import { SignedIn } from "@clerk/clerk-react";
 
-// to try: props can be set up as an interface: see https://chatgpt.com/share/67a65920-225c-800e-ad98-1c086fd8944e
 export function TermCard(
     {
         term, 

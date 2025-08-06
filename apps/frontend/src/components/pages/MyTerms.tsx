@@ -1,7 +1,7 @@
 import { FrontendTerm as Term } from "@shared/types/frontend-term";
-import { TermListPage } from "./term-list-page";
+import { TermListPage } from "./TermListPage";
 import { useUser } from "@clerk/clerk-react";
-import { NotSignedIn } from "../common";
+import { NotSignedIn } from "../common/common";
 
 export function MyTerms() {
     const { isSignedIn, isLoaded } = useUser();
@@ -15,13 +15,14 @@ export function MyTerms() {
             return termEle.isFavourite;
         }
     
-        // TODO: request only favourited terms to reduce load
         return(
-            <TermListPage
-                title="My Terms"
-                dependencies={[]}
-                filterFn={termFilter}
-            />
+            <main>
+                <TermListPage
+                    title="My Terms"
+                    dependencies={[]}
+                    filterFn={termFilter}
+                />
+            </main>
         )
     }
 }
