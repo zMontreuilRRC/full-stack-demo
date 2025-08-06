@@ -1,9 +1,9 @@
-import { TermListDisplay } from "../common";
 import { useTerms } from "../../hooks/useTerms";
 import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { createPortal } from "react-dom";
-import PopupMessage from "../popup-message";
 import { usePopup } from "../../hooks/usePopup";
+import PopupMessage from "../common/popup-message/PopupMessage";
+import { TermListDisplay } from "../common/term-list-display/TermListDisplay";
 
 /** 
  * this "wrapper" page allows us to explicitly set page filters without
@@ -41,7 +41,7 @@ export function TermListPage(
     }
 
     return(
-        <main>
+        <>
             <h2>{title}</h2>
             <div>
                 {error ? 
@@ -49,7 +49,7 @@ export function TermListPage(
                     <TermListDisplay 
                         terms={terms} 
                         onSaveClick={ 
-                            async (id) => {
+                            async (id: number) => {
                                 await handleSaveClick(id);
                             }
                         } 
@@ -60,6 +60,6 @@ export function TermListPage(
             {popupVisible && createPortal(
                 <PopupMessage message={popupText} />
             , document.body)}
-        </main>
+        </>
     )
 }
