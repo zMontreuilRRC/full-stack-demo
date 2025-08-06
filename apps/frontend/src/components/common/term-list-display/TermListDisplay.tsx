@@ -1,28 +1,7 @@
 import { useState } from "react";
+import { TermCard } from "../term-card/TermCard";
 import { FrontendTerm as Term } from "@shared/types/frontend-term";
-import { TermCard } from "./TermCard";
-import { SignInButton } from "@clerk/clerk-react";
-import { CheckmarkIcon } from "../../assets/checkmark-icon";
-import { DiskIcon } from "../../assets/disk-pen-svgrepo-com";
 
-export function Footer() {
-    return(<footer>
-        Complexicon &#169; Me, 2025
-    </footer>);
-}
-
-export function ToggleSaveButton({onClick, isSaved} : {
-    onClick: () => void, 
-    isSaved: boolean}) 
-{
-    return(
-        <button onClick={onClick}>
-            {isSaved ? <CheckmarkIcon /> : <DiskIcon />}
-        </button>
-    );
-}
-
-// props are passed as a single object, which may be destructured in parameters
 export function TermListDisplay({terms, onSaveClick}: 
     {
         terms: Term[], 
@@ -55,16 +34,5 @@ export function TermListDisplay({terms, onSaveClick}:
         <ol className="terms-list">
             {termListItems}
         </ol>
-    )
-}
-
-export function NotSignedIn() {
-    return (
-        <section className="container">
-            <h2>Sign in to view this content.</h2>
-            <SignInButton>
-                <button>Click here to sign in or create an account.</button>
-            </SignInButton>
-        </section>
     )
 }

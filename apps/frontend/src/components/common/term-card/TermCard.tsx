@@ -1,6 +1,7 @@
 import { FrontendTerm as Term } from "@shared/types/frontend-term";
-import { ToggleSaveButton } from "./common";
 import { SignedIn } from "@clerk/clerk-react";
+import { CheckmarkIcon } from "../../../assets/checkmark-icon";
+import { DiskIcon } from "../../../assets/disk-pen-svgrepo-com";
 
 export function TermCard(
     {
@@ -24,11 +25,10 @@ export function TermCard(
                 {term.title}
             </h3>
             <SignedIn>
-                <ToggleSaveButton 
+                <button onClick={() => onSaveClick(term.id)}>
+                    {term.isFavourite ? <CheckmarkIcon /> : <DiskIcon />}
+                </button>
                 // while we would normally want to add saving terms to the TermCard, the state needs to know when a term has been updated
-                    onClick={() => onSaveClick(term.id)} 
-                    isSaved={term.isFavourite}
-                />
             </SignedIn>
         </div>
         { isExpanded 

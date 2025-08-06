@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { AllTerms } from "./components/pages/AllTerms";
-import { Layout } from "./components/pages/Layout";
+import { Layout } from "./components/layout/Layout";
 import { MyTerms } from "./components/pages/MyTerms";
 import { SearchResult } from "./components/pages/SearchResults";
 import { Landing } from "./components/pages/Landing";

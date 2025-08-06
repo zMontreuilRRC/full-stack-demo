@@ -2,8 +2,8 @@ import { useTerms } from "../../hooks/useTerms";
 import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { createPortal } from "react-dom";
 import { usePopup } from "../../hooks/usePopup";
-import { TermListDisplay } from "../common/common";
-import PopupMessage from "../common/popup-message";
+import PopupMessage from "../common/popup-message/PopupMessage";
+import { TermListDisplay } from "../common/term-list-display/TermListDisplay";
 
 /** 
  * this "wrapper" page allows us to explicitly set page filters without
