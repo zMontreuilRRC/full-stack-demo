@@ -1,6 +1,5 @@
 import * as TermRepo from "../apis/termRepo";
-import * as TermFavouriteRepo from "../apis/termFavouriteRepo";
-import { FrontendTerm as Term } from "@shared/types/frontend-term";
+import { Term } from "../types/term";
 
 export async function fetchTerms(sessionToken? : string|null) {
     const terms = await TermRepo.fetchTerms(sessionToken);
@@ -12,12 +11,12 @@ export async function fetchTerms(sessionToken? : string|null) {
 export async function toggleFavouriteTerm(termId: number, sessionToken: string) {
     const term: Term = await TermRepo.getTermById(termId, sessionToken);
     if(term.isFavourite) {
-        await TermFavouriteRepo.deleteFavouriteTerm(
+        await TermRepo.deleteFavouriteTerm(
             term.id,
             sessionToken
         );
     } else {
-        await TermFavouriteRepo.addFavouriteTerm(
+        await TermRepo.addFavouriteTerm(
             term.id,
             sessionToken
         );

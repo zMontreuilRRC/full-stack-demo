@@ -1,4 +1,8 @@
 import { Term } from "../types/term";
+import { termData } from "./mockTermData";
+
+// currently we use a mock database to simulate the existence of the backend
+// when we implement the backend we will replace these methods with calls to an API
 
 type TermsResponseJSON = {message: string, data: Term[]};
 type TermResponseJSON = {message: string, data: Term};
@@ -62,4 +66,44 @@ export async function updateTerm(term: Term, sessionToken: string) {
 
     const json: TermResponseJSON = await updateResponse.json();
     return json.data;
+}
+
+export async function addFavouriteTerm(
+    termId: number,
+    sessionToken: string
+) {
+    const queryUrl = `${BASE_URL}/terms/${termId}/favourite`
+    const response = await fetch(
+        queryUrl,
+        {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${sessionToken}`
+            }
+        }
+    );
+
+    if(!response.ok) {
+        throw new Error("Error adding term to favourites");
+    }
+}
+
+export async function deleteFavouriteTerm(
+    termId: number,
+    sessionToken: string
+) {
+    const queryUrl = `${BASE_URL}/terms/${termId}/favourite`
+    const response = await fetch(
+        queryUrl,
+        {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${sessionToken}`
+            }
+        }
+    );
+
+    if(!response.ok) {
+        throw new Error("Error removing term from favourites");
+    }
 }
