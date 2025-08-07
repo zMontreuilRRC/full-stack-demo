@@ -53,7 +53,7 @@ export async function deleteFavouriteTerm(
     if(!foundTerm) {
         throw new Error(`Failed to fetch term with ${termId}`);
     } else {
-        foundTerm.isFavourite = true;
+        foundTerm.isFavourite = false;
     }
 
     return foundTerm;

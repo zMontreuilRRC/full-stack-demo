@@ -36,8 +36,8 @@ export function TermListPage(
     }
 
     const handleSaveClick = async (id: number) => {
-        await toggleFavouriteTerm(id);
         displayTogglePopup(id);
+        await toggleFavouriteTerm(id);
     }
 
     return(
