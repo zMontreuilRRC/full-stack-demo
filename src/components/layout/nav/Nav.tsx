@@ -1,5 +1,4 @@
 import { NavLink, useLocation, useNavigate } from "react-router";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import { useSearch } from "../../../hooks/useSearch";
 import { SearchBar } from "../../common/search-bar/SearchBar";
@@ -42,22 +41,9 @@ export function Nav() {
                 <NavLink to="/terms">
                     All Terms
                 </NavLink>
-                <SignedIn>
-                    <NavLink to="/terms/my-terms">
-                        My Terms
-                    </NavLink>
-                </SignedIn>
-            </div>
-            <div className="user-management-links">
-                {/* clerk-provided components */}
-                <SignedOut>
-                    {/* renders when user is signed out */}
-                    <SignInButton />
-                </SignedOut>
-                <SignedIn>
-                    {/* renders when user is signed in */}
-                    <UserButton />
-                </SignedIn>
+                <NavLink to="/terms/my-terms">
+                    My Terms
+                </NavLink>
             </div>
             <SearchBar
                 searchValue={searchValue}
