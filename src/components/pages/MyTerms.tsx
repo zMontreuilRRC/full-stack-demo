@@ -1,7 +1,7 @@
-import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { TermListPage } from "./TermListPage";
 import { useUser } from "@clerk/clerk-react";
 import { NotSignedIn } from "../common/not-signed-in/NotSignedIn";
+import { Term } from "../../types/term";
 
 export function MyTerms() {
     const { isSignedIn, isLoaded } = useUser();

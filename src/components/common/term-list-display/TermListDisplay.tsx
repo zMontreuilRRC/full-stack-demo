@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { TermCard } from "../term-card/TermCard";
-import { FrontendTerm as Term } from "@shared/types/frontend-term";
+import { Term } from "../../../types/term";
 
 export function TermListDisplay({terms, onSaveClick}: 
     {
         terms: Term[], 
-        onSaveClick: (id: number) => {}
+        onSaveClick: (id: number) => void
     }) {
     const [expandedId, setExpandedId] = useState<number|null>(null);
 
@@ -17,10 +17,9 @@ export function TermListDisplay({terms, onSaveClick}:
                 term={term} 
                 isExpanded={term.id === expandedId} 
                 onTitleClick={ 
-                    () => {
-                        term.id !== expandedId ? 
-                            setExpandedId(term.id) : 
-                            setExpandedId(null)
+                    () => {term.id !== expandedId ? 
+                        setExpandedId(term.id) : 
+                        setExpandedId(null)
                     }
                 }
                 onSaveClick={onSaveClick}

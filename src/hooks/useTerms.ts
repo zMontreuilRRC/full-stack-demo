@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import * as TermService from "../services/termService";
 import { useAuth } from "@clerk/clerk-react";
+import { Term } from "../types/term";
 
 // filter function can be passed in as callback to filter down resulting terms
 // dependencies may be passed in to force re-query
 export function useTerms(
     dependencies: unknown[],
-    filterFn? : ((term: Term) => Boolean)|null,
+    filterFn? : ((term: Term) => boolean)|null,
 ) {
     // extract methods from useAuth() clerk method
     const {getToken, isSignedIn} = useAuth();
@@ -17,7 +17,7 @@ export function useTerms(
     const fetchTerms = async() => {
         try {
             // get the current user's session token
-            let sessionToken = isSignedIn? await getToken() : null;
+            const sessionToken = isSignedIn? await getToken() : null;
             let result = await TermService.fetchTerms(sessionToken);
             if(filterFn) {
                 result = result.filter(filterFn);
@@ -34,7 +34,7 @@ export function useTerms(
     // TODO: Update method to request update based on user login/term status
     const toggleFavouriteTerm = async(termId: number) => {
         try {
-            let sessionToken = isSignedIn? await getToken() : null;
+            const sessionToken = isSignedIn? await getToken() : null;
 
             if(!sessionToken) {
                 throw new Error("Not Authorized");

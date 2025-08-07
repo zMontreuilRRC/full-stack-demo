@@ -1,9 +1,9 @@
 import { useTerms } from "../../hooks/useTerms";
-import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { createPortal } from "react-dom";
 import { usePopup } from "../../hooks/usePopup";
 import PopupMessage from "../common/popup-message/PopupMessage";
 import { TermListDisplay } from "../common/term-list-display/TermListDisplay";
+import { Term } from "../../types/term";
 
 /** 
  * this "wrapper" page allows us to explicitly set page filters without
@@ -14,14 +14,14 @@ export function TermListPage(
     {
        title: string,
        dependencies: any[],
-       filterFn: ((term: Term) => Boolean)|null,
+       filterFn: ((term: Term) => boolean)|null,
     } 
 ) {
     const { terms, error, toggleFavouriteTerm } = useTerms(dependencies, filterFn);
 
     const {popupVisible, popupText, showPopupWithText} = usePopup();
 
-    const displayTogglePopup = (id: Number) => {
+    const displayTogglePopup = (id: number) => {
         const toggledTerm = terms.find(t => t.id === id);
         let newPopupText = "";
         if(!toggledTerm) {

@@ -5,7 +5,7 @@ export function validateSearch(searchValue: string):{
         errors: string[];
 } {
     let isValid = true;
-    let errors: string[] = [];
+    const errors: string[] = [];
 
 
     if(searchValue.trim().length < 2) {

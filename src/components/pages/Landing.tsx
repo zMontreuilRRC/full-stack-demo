@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSearch } from "../../hooks/useSearch";
-import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import { TermListPage } from "./TermListPage";
 import { SearchBar } from "../common/search-bar/SearchBar";
+import { Term } from "../../types/term";
 
 export function Landing() {
     const {
@@ -13,7 +13,7 @@ export function Landing() {
 
     const [searchMessages, setSearchMessages] = useState<string[]>([]);
     
-    let [searchLength, setSearchLength] = useState(0);
+    const [searchLength, setSearchLength] = useState(0);
     // filter terms on the page based on the current searchbar value
 
     const termFilter = (termEle: Term) => {

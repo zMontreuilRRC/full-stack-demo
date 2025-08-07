@@ -1,7 +1,7 @@
-import { FrontendTerm as Term } from "@shared/types/frontend-term";
+import { Term } from "../types/term";
 
-type TermsResponseJSON = {message: String, data: Term[]};
-type TermResponseJSON = {message: String, data: Term};
+type TermsResponseJSON = {message: string, data: Term[]};
+type TermResponseJSON = {message: string, data: Term};
 
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const TERM_ENDPOINT = "/terms"
