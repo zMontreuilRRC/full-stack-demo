@@ -1,9 +1,9 @@
-import { useTerms } from "../../hooks/useTerms";
 import { createPortal } from "react-dom";
-import { usePopup } from "../../hooks/usePopup";
-import PopupMessage from "../common/popup-message/PopupMessage";
-import { TermListDisplay } from "../common/term-list-display/TermListDisplay";
-import { Term } from "../../types/term";
+import { usePopup } from "../../../hooks/usePopup";
+import { useTerms } from "../../../hooks/useTerms";
+import { Term } from "../../../types/term";
+import PopupMessage from "../../common/popup-message/PopupMessage";
+import { TermListDisplay } from "../../common/term-list-display/TermListDisplay";
 
 /**
  * title: the title of the page

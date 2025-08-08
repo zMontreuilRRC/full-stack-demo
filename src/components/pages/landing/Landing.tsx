@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { useSearch } from "../../hooks/useSearch";
-import { TermListPage } from "./TermListPage";
-import { SearchBar } from "../common/search-bar/SearchBar";
-import { Term } from "../../types/term";
+import { useState, useEffect } from "react";
+import { useSearch } from "../../../hooks/useSearch";
+import { Term } from "../../../types/term";
+import { SearchBar } from "../../common/search-bar/SearchBar";
+import { TermListPage } from "../term-list-page/TermListPage";
+import "./landing.css";
 
 export function Landing() {
     const {
@@ -10,11 +11,8 @@ export function Landing() {
         setSearchValue,
         trySearch
     } = useSearch();
-
-    const [searchMessages, setSearchMessages] = useState<string[]>([]);
     
     const [searchLength, setSearchLength] = useState(0);
-    // filter terms on the page based on the current searchbar value
 
     const termFilter = (termEle: Term) => {
         if(searchLength != 0) {
@@ -44,13 +42,20 @@ export function Landing() {
                 <h1>Complexicon</h1>
                 <span>Make complex terms simple to understand!</span>
             </header>
-            <main>
+            <main className="page-landing">
                 <section>
+                    {/* 
+                        Render the main search bar on the page.
+                        As a "controlled" component, it gets its text value from searchValue.
+                        When the user types into the field, it invokes handleSearchChange with the new value.
+                        It will not display any messages if a search is invalid, only empty results.
+                        It also has no "submission" logic.
+                        When the value in the searchbar changes, it updates the state of the Landing component.
+                    */}
                     <SearchBar  
                         searchValue={searchValue}
-                        messages={searchMessages}
+                        messages={[]}
                         handleSearchChange={e => {
-                            setSearchMessages([]);
                             setSearchValue(e);
                         }}
                         handleSubmit={() => {}}

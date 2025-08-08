@@ -1,6 +1,7 @@
-import { TermListPage } from "./TermListPage";
 
 // Render a TermListPage with no dependencies or filter function
+
+import { TermListPage } from "../term-list-page/TermListPage";
 
 export function AllTerms() {
     return(

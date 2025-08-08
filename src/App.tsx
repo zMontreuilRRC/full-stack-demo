@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import { AllTerms } from "./components/pages/AllTerms";
+import { Landing } from "./components/pages/landing/Landing";
 import { Layout } from "./components/layout/Layout";
-import { MyTerms } from "./components/pages/MyTerms";
-import { SearchResult } from "./components/pages/SearchResults";
-import { Landing } from "./components/pages/Landing";
+import { AllTerms } from "./components/pages/all-terms/AllTerms";
+import { MyTerms } from "./components/pages/my-terms/MyTerms";
+import { SearchResult } from "./components/pages/search-results/SearchResults";
 
 function App() {
     return(

@@ -1,5 +1,6 @@
-import { TermListPage } from "./TermListPage";
-import { Term } from "../../types/term";
+import { Term } from "../../../types/term";
+import { TermListPage } from "../term-list-page/TermListPage";
+
 
 export function MyTerms() {
     const termFilter = (termEle: Term) => {

@@ -1,6 +1,7 @@
-import { Term } from "../../types/term.ts";
-import { TermListPage } from "./TermListPage.tsx";
 import { useSearchParams } from "react-router-dom";
+import { Term } from "../../../types/term";
+import { TermListPage } from "../term-list-page/TermListPage";
+
 
 export function SearchResult() {
     // since this page has no state at the top it never changes, even when re-routed to.
