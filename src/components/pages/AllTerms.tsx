@@ -1,13 +1,14 @@
 import { TermListPage } from "./TermListPage";
 
-export function AllTerms() {
+// Render a TermListPage with no dependencies or filter function
 
+export function AllTerms() {
     return(
         <main>
             <TermListPage
                 title="All Terms"
-                dependencies={[]}
-                filterFn={null}
+                termDependencies={[]}
+                termFilterFn={null}
             />
         </main>
     )

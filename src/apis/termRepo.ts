@@ -1,6 +1,18 @@
 import { Term } from "../types/term";
 import { termData } from "./mockTermData";
 
+/**
+ * Repository methods are made to send requests to external services, such
+ * as APIs and the application backend. 
+ * 
+ * These are often separated in terms of what resource they access. 
+ * They are often built with a set of basic CRUD methods for specific resources.
+ * 
+ * For now we are just accessing Terms, but our repo will eventually split into 
+ * two: one for Terms, and one for TermUsers (the relationship between terms
+ * and individual users.)
+ */
+
 // currently we use a mock database to simulate the existence of the backend
 // when we implement the backend we will replace these methods with calls to an API
 

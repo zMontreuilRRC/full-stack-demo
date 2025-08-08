@@ -10,8 +10,8 @@ export function MyTerms() {
         <main>
             <TermListPage
                 title="My Terms"
-                dependencies={[]}
-                filterFn={termFilter}
+                termDependencies={[]}
+                termFilterFn={termFilter}
             />
         </main>
     )

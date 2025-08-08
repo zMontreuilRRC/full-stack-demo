@@ -32,8 +32,8 @@ export function SearchResult() {
             <main>
                 <TermListPage
                     title = {`Results for "${value}"`}
-                    dependencies={[value]}
-                    filterFn={searchFilter}
+                    termDependencies={[value]}
+                    termFilterFn={searchFilter}
                 />
             </main>
         )

@@ -24,7 +24,6 @@ export function Landing() {
         }
     }
 
-    // this is used to initially attach the debounce to the fetchTerms call
     useEffect(() => {
         const debounceSearch = setTimeout(() => {
             // we store messages in component state to change how they are displayed
@@ -61,8 +60,8 @@ export function Landing() {
                 while also re-searching if the length of the search changes */}
                 <TermListPage
                     title=""
-                    dependencies={[searchLength]}
-                    filterFn={termFilter}
+                    termDependencies={[searchLength]}
+                    termFilterFn={termFilter}
                 />
             </main>
         </>
