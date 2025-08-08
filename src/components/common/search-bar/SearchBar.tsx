@@ -16,7 +16,12 @@ export function SearchBar({searchValue, messages, handleSearchChange, handleSubm
     }) {
     return(
         <form className="search-form">
-            {/* Note use of closing tags on inputs */}
+            {/*
+                This is an example of a "controlled input" in which the value
+                of the input is received from state -- the state is updated
+                when the user modifies field text. This is how React can
+                keep track of the state of the field.
+            */}
             <input type="text" 
                 name="field-term" 
                 placeholder="Enter a word, phrase, or acronym..." 

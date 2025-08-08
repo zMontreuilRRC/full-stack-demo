@@ -68,6 +68,13 @@ export function useTerms(
         }   
     }
 
+    /**
+     * When this hook is first invoked, fetchTerms() immediately runs, getting
+     * all terms from its service and then filtering them.
+     * 
+     * If any of the dependencies that this hook received change in value,
+     * it will re-run the fetch automatically.
+     */
     useEffect(() => {
         fetchTerms();
     }, [...dependencies]);
