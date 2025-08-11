@@ -40,7 +40,7 @@ export async function updateTerm(term: Term) {
             method: "PUT",
             body: JSON.stringify({...term}),
             headers: {
-                ContentType: "application/json",
+                "Content-Type": "application/json",
             }
         }
     );
@@ -62,7 +62,7 @@ export async function addFavouriteTerm(term: Term) {
             method: "PUT",
             body: JSON.stringify({...term}),
             headers: {
-                ContentType: "application/json",
+                "Content-Type": "application/json",
             }
         }
     );
@@ -80,7 +80,7 @@ export async function unfavouriteTerm(term: Term) {
             method: "PUT",
             body: JSON.stringify({...term}),
             headers: {
-                ContentType: "application/json",
+                "Content-Type": "application/json",
             }
         }
     );
