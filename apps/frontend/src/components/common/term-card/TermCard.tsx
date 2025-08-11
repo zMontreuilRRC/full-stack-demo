@@ -1,5 +1,4 @@
 import { FrontendTerm as Term } from "@shared/types/frontend-term";
-import { SignedIn } from "@clerk/clerk-react";
 import { CheckmarkIcon } from "../../../assets/checkmark-icon";
 import { DiskIcon } from "../../../assets/disk-pen-svgrepo-com";
 
@@ -24,12 +23,9 @@ export function TermCard(
             <h3 onClick={() => onTitleClick(term.id)}>
                 {term.title}
             </h3>
-            <SignedIn>
-                <button onClick={() => onSaveClick(term.id)}>
-                    {term.isFavourite ? <CheckmarkIcon /> : <DiskIcon />}
-                </button>
-                // while we would normally want to add saving terms to the TermCard, the state needs to know when a term has been updated
-            </SignedIn>
+            <button onClick={() => onSaveClick(term.id)}>
+                {term.isFavourite ? <CheckmarkIcon /> : <DiskIcon />}
+            </button>
         </div>
         { isExpanded 
             ? <p>{term.definition}</p>

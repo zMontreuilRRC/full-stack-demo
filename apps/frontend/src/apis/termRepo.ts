@@ -6,15 +6,10 @@ type TermResponseJSON = {message: String, data: Term};
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const TERM_ENDPOINT = "/terms"
 
-export async function fetchTerms(sessionToken?: string|null): Promise<Term[]> {
+export async function fetchTerms(): Promise<Term[]> {
     // include bearer authorization if the user is signed in and a token is passed to the function
     const termResponse: Response = await fetch(
-        `${BASE_URL}${TERM_ENDPOINT}`,
-        sessionToken? {
-            headers: {
-                Authorization: `Bearer ${sessionToken}`,
-            } 
-        } : undefined
+        `${BASE_URL}${TERM_ENDPOINT}`
     );
 
     if(!termResponse.ok) {
@@ -25,14 +20,9 @@ export async function fetchTerms(sessionToken?: string|null): Promise<Term[]> {
     return json.data;
 }
 
-export async function getTermById(termId: number, sessionToken?: string|null): Promise<Term> {
+export async function getTermById(termId: number): Promise<Term> {
     const termResponse: Response = await fetch(
-        `${BASE_URL}${TERM_ENDPOINT}/${termId}`,
-        sessionToken? {
-            headers: {
-                Authorization: `Bearer ${sessionToken}`
-            }
-        } : undefined
+        `${BASE_URL}${TERM_ENDPOINT}/${termId}`
     );
 
     if(!termResponse.ok) {
@@ -43,7 +33,7 @@ export async function getTermById(termId: number, sessionToken?: string|null): P
     return json.data;
 }
 
-export async function updateTerm(term: Term, sessionToken: string) {
+export async function updateTerm(term: Term) {
     const updateResponse: Response = await fetch(
         `${BASE_URL}${TERM_ENDPOINT}/${term.id}`,
         {
@@ -51,7 +41,6 @@ export async function updateTerm(term: Term, sessionToken: string) {
             body: JSON.stringify({...term}),
             headers: {
                 ContentType: "application/json",
-                Authorization: `Bearer ${sessionToken}`
             }
         }
     );
