@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
-import { Term } from "@prisma/client";
+import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import * as TermService from "../services/termService";
+import { useAuth } from "@clerk/clerk-react";
 
 // filter function can be passed in as callback to filter down resulting terms
 // dependencies may be passed in to force re-query
 export function useTerms(
-    dependencies: any[] = [],
+    dependencies: unknown[],
     filterFn? : ((term: Term) => Boolean)|null,
 ) {
+    // extract methods from useAuth() clerk method
+    const {getToken, isSignedIn} = useAuth();
     const [terms, updateTerms] = useState<Term[]>([]);
     const [error, setError] = useState<string | null>();
 
     const fetchTerms = async() => {
         try {
-            let result = await TermService.fetchTerms();
+            // get the current user's session token
+            let sessionToken = isSignedIn? await getToken() : null;
+            let result = await TermService.fetchTerms(sessionToken);
             if(filterFn) {
                 result = result.filter(filterFn);
             }
@@ -26,14 +31,17 @@ export function useTerms(
         }
     }
 
-    const toggleFavouriteTerm = async(id: number) => {
+    // TODO: Update method to request update based on user login/term status
+    const toggleFavouriteTerm = async(termId: number) => {
         try {
-            const term: Term = await TermService.getTermById(id)
-            term.isFavourite = !term.isFavourite;
-            await TermService.updateTerm(term);
+            let sessionToken = isSignedIn? await getToken() : null;
 
-            // re-query after updating
-            await fetchTerms();
+            if(!sessionToken) {
+                throw new Error("Not Authorized");
+            } else {
+                await TermService.toggleFavouriteTerm(termId, sessionToken);
+                await fetchTerms();
+            }
         } catch(errorObject) {
             setError(`${errorObject}`);
         }   

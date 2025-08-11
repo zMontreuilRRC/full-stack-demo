@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { Nav } from "./nav";
-import { Footer } from "./common";
+import { Footer } from "./footer/Footer";
+import { Nav } from "./nav/Nav";
 
 // outlet component has pages injected dynamically
 export function Layout() {
