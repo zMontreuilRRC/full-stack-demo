@@ -11,12 +11,12 @@ export async function fetchTerms() {
 export async function toggleFavouriteTerm(termId: number) {
     const term: Term = await TermRepo.getTermById(termId);
     if(term.isFavourite) {
-        // await TermRepo.deleteFavouriteTerm(
-        //     term.id,
-        // );
+        await TermRepo.unfavouriteTerm(
+            term
+        );
     } else {
-        // await TermRepo.addFavouriteTerm(
-        //     term.id,
-        // );
+        await TermRepo.addFavouriteTerm(
+            term
+        );
     }
 }

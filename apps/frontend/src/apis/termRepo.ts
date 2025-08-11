@@ -52,3 +52,39 @@ export async function updateTerm(term: Term) {
     const json: TermResponseJSON = await updateResponse.json();
     return json.data;
 }
+
+export async function addFavouriteTerm(term: Term) {
+    term.isFavourite = true;
+
+    const updateResponse: Response = await fetch(
+        `${BASE_URL}${TERM_ENDPOINT}/${term.id}`,
+        {
+            method: "PUT",
+            body: JSON.stringify({...term}),
+            headers: {
+                ContentType: "application/json",
+            }
+        }
+    );
+
+    const json: TermResponseJSON = await updateResponse.json();
+    return json.data;
+}
+
+export async function unfavouriteTerm(term: Term) {
+    term.isFavourite = false;
+
+    const updateResponse: Response = await fetch(
+        `${BASE_URL}${TERM_ENDPOINT}/${term.id}`,
+        {
+            method: "PUT",
+            body: JSON.stringify({...term}),
+            headers: {
+                ContentType: "application/json",
+            }
+        }
+    );
+
+    const json: TermResponseJSON = await updateResponse.json();
+    return json.data;
+}
