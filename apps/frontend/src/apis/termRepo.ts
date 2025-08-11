@@ -50,7 +50,7 @@ export async function updateTerm(term: Term, sessionToken: string) {
             method: "PUT",
             body: JSON.stringify({...term}),
             headers: {
-                ContentType: "application/json",
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${sessionToken}`
             }
         }
