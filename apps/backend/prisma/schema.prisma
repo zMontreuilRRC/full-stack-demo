@@ -1,20 +1,32 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
+// information about the database that prisma will connect to
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+// The db schema is defined by adding models in schema.prisma
+// Each model corresponds to a single table
+// Each property corresponds to a column in that table
+// Each instance of a model corresponds to a record in that table
+// This structure lets us "code" our db schema in TypeScript
+
+// If you change the prisma schema, use [npx prisma migrate dev --name <migration-name>]
+// to create and deploy a migration
+// see https://www.prisma.io/docs/orm/prisma-migrate/understanding-prisma-migrate/mental-model
+
+// Create a table called Term
 model Term {
+  // id property, as the identifier, with a default value that autoincrements
   id  Int @id @default(autoincrement())
+
+  // title, definition, and isFavourite properties
   title String
   definition String
   isFavourite Boolean
