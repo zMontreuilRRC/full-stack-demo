@@ -1,13 +1,16 @@
 import { FrontendTerm as Term } from "@shared/types/frontend-term";
+// import term definition from monorepo root
+// "@" path alias defined in tsconfig.base.json
 
 type TermsResponseJSON = {message: String, data: Term[]};
 type TermResponseJSON = {message: String, data: Term};
 
+// Base url for backend
+// Vite provides this value from the .env file rather than dotenv package
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const TERM_ENDPOINT = "/terms"
 
 export async function fetchTerms(): Promise<Term[]> {
-    // include bearer authorization if the user is signed in and a token is passed to the function
     const termResponse: Response = await fetch(
         `${BASE_URL}${TERM_ENDPOINT}`
     );
@@ -33,6 +36,7 @@ export async function getTermById(termId: number): Promise<Term> {
     return json.data;
 }
 
+// Note inclusion of headers, required for CORS/posting content
 export async function updateTerm(term: Term) {
     const updateResponse: Response = await fetch(
         `${BASE_URL}${TERM_ENDPOINT}/${term.id}`,

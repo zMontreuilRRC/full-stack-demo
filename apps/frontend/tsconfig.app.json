@@ -1,4 +1,6 @@
 {
+  // Use the root directory for configuration
+  // any overriding configs defined here
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2020",
