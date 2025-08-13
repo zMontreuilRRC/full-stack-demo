@@ -1,5 +1,7 @@
 import Joi, { ObjectSchema } from "joi";
 
+// define the correct shape of a term object received in JSON
+// Require a title and definition string at minimum
 export const termSchema: ObjectSchema = Joi.object({
     title: Joi.string().required().messages({
         "any.required": "Title is required",

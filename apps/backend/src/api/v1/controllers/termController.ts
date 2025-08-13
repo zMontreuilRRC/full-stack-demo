@@ -3,6 +3,12 @@ import {Term} from "@prisma/client";
 import * as termService from "../services/termService";
 import { successResponse } from "../models/responseModel";
 
+/**
+ * Controller methods determine how to handle requests and respond to requests.
+ * It sends the appropriate components of the request to services (if needed)
+ * and responds to the request with an appropriate code/body.
+ */
+
 export const getAllTerms = async(
     _req: Request,
     res: Response,
@@ -14,6 +20,7 @@ export const getAllTerms = async(
             successResponse(terms, "Terms retrieved succesfully")
         );
     } catch (error) {
+        // errorHandler middleware will always be the last to catch error throws
         next(error);
     }
 };

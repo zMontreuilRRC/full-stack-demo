@@ -1,6 +1,12 @@
 import { Term } from "@prisma/client";
 import prisma from "../../../../prisma/client";
 
+/**
+ * Services access data as necessary from the Prisma client. They invoke
+ * methods on the ORM, which will send queries to the database and respond
+ * with data needed.
+ * 
+ */
 export const fetchAllTerms = async(): Promise<Term[]> => {
     return prisma.term.findMany();
 }
