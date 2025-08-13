@@ -1,3 +1,5 @@
+// This file acts as an entry point for project references
+// The TS compiler finds the referred apps to compile them together
 {
     "files": [],
     "references": [
@@ -5,6 +7,3 @@
         {"path": "./apps/frontend"}
     ]
 }
-
-// This file acts as an entry point for project references
-// The TS compiler finds the referred apps to compile them together

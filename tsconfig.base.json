@@ -17,6 +17,8 @@
       "forceConsistentCasingInFileNames": true,
       "resolveJsonModule": true,
 
+      // adds the shared directory for compilation
+      // note the @ path alias makes this type available with this path in child directories
       "paths": {
         "@shared/*": ["./shared/*"]
       }
