@@ -7,9 +7,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dev": "concurrently \"npm:start:frontend\" \"npm:start:backend\"",
+    "migrate:backend": "npx --workspace=@complexicon/backend prisma migrate dev",
     "start:frontend": "npm run dev --workspace=@complexicon/frontend",
-    "start:backend": "npm start --workspace=@complexicon/backend",
-    "dev": "concurrently \"npm:start:frontend\" \"npm:start:backend\""
+    "start:backend": "npm start --workspace=@complexicon/backend"
   },
   "keywords": [],
   "author": "",
