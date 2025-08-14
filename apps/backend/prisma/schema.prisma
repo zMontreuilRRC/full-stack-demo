@@ -18,7 +18,8 @@ datasource db {
 // This structure lets us "code" our db schema in TypeScript
 
 // If you change the prisma schema, use [npx prisma migrate dev --name <migration-name>]
-// to create and deploy a migration
+// to create and deploy a migration (a set of SQL commands that will update the
+// database to match the Prisma schema)
 // see https://www.prisma.io/docs/orm/prisma-migrate/understanding-prisma-migrate/mental-model
 
 // Create a table called Term

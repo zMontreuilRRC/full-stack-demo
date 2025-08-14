@@ -6,6 +6,8 @@ const corsOptions: CorsOptions = {
     origin: function(origin, callback) {
         const allowedOrigins = [process.env.FRONTEND_URL];
 
+        // invoke callback (eg. next middleware) if  origin matches or no origin
+        // some services (like postman) do not include an origin in their request
         if(allowedOrigins.includes(origin) || !origin) {
             callback(null, true);
         } else {

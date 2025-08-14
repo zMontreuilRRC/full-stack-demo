@@ -19,7 +19,9 @@ app.use(morgan("combined"));
 // allow express to parse json
 app.use(express.json());
 
-// add cors middleware
+// add Cross-Origin Resource Sharing middleware
+// This will refuse requests from origins that do not fulfill corsOptions requirements
+// see https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS
 app.use(cors(corsOptions));
 
 // invoke swagger middleware for serving docs in /api-docs
