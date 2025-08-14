@@ -24,7 +24,7 @@ CLERK_PUBLISHABLE_KEY=<clerk-publishable-key>
 
 CLERK_SECRET_KEY=<clerk-secret-key>
 
-FRONTEND_URL=http://localhost:5173
+FRONTEND_URL=http://localhost:<your-localhost-port>
 
 PORT=3000
 
