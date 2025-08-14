@@ -22,7 +22,6 @@ export const findOrCreateUser = async(
         // If userId not found with auth, set userId to null 
         // Prevents userId from being included erroneously in the request body
         req.userId = userId;
-        console.log(`USERID: ${req.userId}`);
         next();
     } catch(error) {
         next(error);
