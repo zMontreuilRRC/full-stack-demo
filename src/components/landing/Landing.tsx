@@ -1,4 +1,17 @@
-const testTerms = ["SEO", "IDE", "Big O Notation", "Encapsulation", "Repository"];
+// Sample Data 
+type Term = {
+    id: number,
+    value: string
+};
+
+const testTerms: Term[] = [
+    {id: 0, value: "SEO"}, 
+    {id: 1, value: "IDE"}, 
+    {id: 2, value: "Big O Notation"}, 
+    {id: 3, value: "Encapsulation"}, 
+    {id: 4, value: "Repository"}
+];
+
 // TSX files can be written like any other TS file, but can include JSX Elements
 
 // this function returns a JSX element, so it is a Component
@@ -48,17 +61,19 @@ function Search() {
 // Components can have "props" as parameters
 // Compare to how "terms" are passed to this component in the Landing (like how HTML elements get properties)
 // Props are always packed into an object, so are destructured out (note the {terms} curly braces)
-function ListDisplay({terms}: {terms: string[]}) {
+function ListDisplay({terms}: {terms: Term[]}) {
     // annotate type as a list of JSX elements
     const termListItems: JSX.Element[] = [];
 
     // Here we iterate over the terms received as an argument
     // We add a new JSX element to termListItems for each term string in the array
-    terms.forEach((term, index) => {
+    terms.forEach((term) => {
         // when creating elements in an array, they should always have a "key" prop
+        // The key should always be unique, and not derived from the index 
+        // see https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key
         termListItems.push(<ListTermItem
-                term={term}
-                key={index}
+                term={term.value}
+                key={term.id}
             />
         );
     })
