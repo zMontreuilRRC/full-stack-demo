@@ -9,7 +9,8 @@ import { MyTerms } from "./components/pages/MyTerms";
 import { termData } from "./terms/termData";
 import Landing from "./components/pages/Landing";
 import { Term } from "./types/term";
-import Module2Example from "./components/pages/Module2Example";
+import Module2ButtonExample from "./components/pages/Module2ButtonExample";
+import Module2ListExample from "./components/pages/Module2ListExample";
 
 function App() {
   // Initialize state with the imported termData, as an array of terms.
@@ -45,11 +46,17 @@ function App() {
               } 
             />
 
+            {/* all paths starting with /mod-2-examples */}
+            <Route path="/mod-2-examples">
+                <Route 
+                  path="buttons"
+                  element={<Module2ButtonExample />}
+                />
 
-            <Route 
-              path="/mod-2-example"
-              element={<Module2Example />}
-            >
+                <Route
+                  path="list"
+                  element={<Module2ListExample/>}
+                />
             </Route>
 
               {/* all paths starting with "/terms" */}

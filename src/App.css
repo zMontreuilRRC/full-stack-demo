@@ -74,10 +74,11 @@ footer {
 nav, nav div {
   display: flex;
   justify-content: space-around;
+  font-size: 0.6em;
 }
 
 nav .page-links {
-  width: 40%;
+  width: 60%;
 }
 
 nav span {

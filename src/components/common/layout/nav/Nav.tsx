@@ -14,8 +14,11 @@ export function Nav() {
                 <NavLink to="/terms/my-terms">
                     My Terms
                 </NavLink>
-                <NavLink to="/mod-2-example">
-                    State/Props Example
+                <NavLink to="/mod-2-examples/buttons">
+                    State "Button" Example
+                </NavLink>
+                <NavLink to="/mod-2-examples/list">
+                    State "List" Example
                 </NavLink>
             </div>
             <div className="user-management-links">

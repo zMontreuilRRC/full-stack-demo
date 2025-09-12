@@ -5,7 +5,7 @@ import { useState } from "react";
  * It is not included with the broader application.
  */
 
-function StateExamplePage() {
+function ButtonStateExamplePage() {
     /**
      * We want to easily update and render these number values as they change.
      * We initialize them in state with a:
@@ -22,13 +22,13 @@ function StateExamplePage() {
   return (
     <>
     <header>
-        <h1>State and Props Example</h1>
+        <h1>State and Props "Buttons" Example</h1>
     </header>
     <main>
       <p>
         This page is a simple example of how state and props are used in React.
 
-        See src/components/pages/Module2Example.tsx
+        See <i>src/components/pages/Module2ButtonExample.tsx</i>
       </p>
         {/* 
             We render two CounterButton components.
@@ -92,4 +92,4 @@ export function CounterButton(
   );
 }
 
-export default StateExamplePage;
+export default ButtonStateExamplePage;
