@@ -3,8 +3,6 @@ import { FrontendTerm as Term } from "@shared/types/frontend-term";
 import * as TermService from "../services/termService";
 import { useAuth } from "@clerk/clerk-react";
 
-// filter function can be passed in as callback to filter down resulting terms
-// dependencies may be passed in to force re-query
 export function useTerms(
     dependencies: unknown[],
     filterFn? : ((term: Term) => Boolean)|null,
@@ -16,7 +14,8 @@ export function useTerms(
 
     const fetchTerms = async() => {
         try {
-            // get the current user's session token
+            // get the current user's session token for use in request
+            // inclusion in Authorization header authorizes current user/gets favourites
             let sessionToken = isSignedIn? await getToken() : null;
             let result = await TermService.fetchTerms(sessionToken);
             if(filterFn) {

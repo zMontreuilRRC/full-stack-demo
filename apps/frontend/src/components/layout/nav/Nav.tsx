@@ -15,7 +15,8 @@ export function Nav() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // the navbar, unlike the main page, will navigate on a succesful search. We extracted this from the search component so we could change behaviour in different parent components
+    // the navbar, unlike the main page, will navigate on a succesful search.
+    //  We extracted this from the search component so we could change behaviour in different parent components
     const doSearch = () => {
         const validation = trySearch();
         if(validation.isValid) {
@@ -42,16 +43,18 @@ export function Nav() {
                 <NavLink to="/terms">
                     All Terms
                 </NavLink>
+                {/* only displayed when the user is signed in */}
                 <SignedIn>
                     <NavLink to="/terms/my-terms">
                         My Terms
                     </NavLink>
                 </SignedIn>
             </div>
+            {/* Components receive sign-in state from ClerkProvider in <main> */}
             <div className="user-management-links">
                 {/* clerk-provided components */}
                 <SignedOut>
-                    {/* renders when user is signed out */}
+                    {/* renders when user is signed out. Directs to clerk-provided sign-in page */}
                     <SignInButton />
                 </SignedOut>
                 <SignedIn>

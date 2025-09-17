@@ -2,6 +2,8 @@ import * as TermRepo from "../apis/termRepo";
 import * as TermFavouriteRepo from "../apis/termFavouriteRepo";
 import { FrontendTerm as Term } from "@shared/types/frontend-term";
 
+// use the currently logged in user's session token to request terms
+// 
 export async function fetchTerms(sessionToken? : string|null) {
     const terms = await TermRepo.fetchTerms(sessionToken);
     return terms;

@@ -14,6 +14,9 @@ const router: Router = express.Router();
 // Note: Joi validates request components but not authorization
 // therefore we leave user id out of the validation (since clerk alone supplies it)
 
+// HTTP Request authorization header includes session token
+// this is used by Clerk in the back-end to get the user's id from Clerk
+// we store it in our database to manage user-specific data in our app
 router.get(
     "/terms", 
     findOrCreateUser,

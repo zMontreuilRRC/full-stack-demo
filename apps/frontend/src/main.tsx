@@ -9,6 +9,8 @@ import { ClerkProvider } from '@clerk/clerk-react'
 createRoot(document.getElementById('root')!).render(
   // enables development-only checks
   <StrictMode>
+    {/* the VITE_ prefix allows vite to expose .env variables  */}
+    {/* The ClerkProvider allows use of Clerk auth, similar to context, in app */}
     <ClerkProvider publishableKey = {import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
         {/* allows for routing in the application */}
       <BrowserRouter>

@@ -15,6 +15,8 @@ export const getAllTerms = async(
 
         const terms = await termService.fetchAllTerms();
 
+        // front-end only needs to know if the term is or is not "favourited" by the front-end
+        // we can therefore map terms from Prisma to terms that only include a boolean for favourites
         const frontendTerms: FrontendTerm[] = terms.map(t =>
             toFrontendTerm(t, userId)
         );
