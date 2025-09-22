@@ -12,6 +12,7 @@ const router: Router = express.Router();
 
 router.post(
     "/terms/:termId/favourite",
+    // only authenticated users may access these routes
     requireAuth(),
     findOrCreateUser, 
     validateRequest(userTermSchema),

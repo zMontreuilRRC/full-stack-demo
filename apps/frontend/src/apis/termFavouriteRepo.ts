@@ -1,5 +1,10 @@
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 
+/**
+ * Because our back-end now has a new route/resource (the userTerm many-to-many
+ * middle table) we use a new repository to POST/DELETE to that route
+ */
+
 export async function addFavouriteTerm(
     termId: number,
     sessionToken: string

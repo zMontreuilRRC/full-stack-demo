@@ -36,6 +36,6 @@ model UserTerm {
   term    Term @relation(fields:[termId], references: [id], onDelete: Cascade)
   userId  String
   termId  Int
-
+  // uses composite ID from principle tables
   @@id([userId, termId])
 }

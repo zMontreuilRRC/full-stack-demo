@@ -3,6 +3,7 @@ import * as userTermService from "../services/userTermService";
 import { successResponse } from "../models/responseModel";
 import { UserTerm } from "@prisma/client";
 
+// Users add favourites by creating a new middle table record
 export const createUserTerm = async(
     req: Request,
     res: Response,
