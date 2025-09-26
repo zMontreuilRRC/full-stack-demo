@@ -1,4 +1,7 @@
-# Script for preventing Vercel from deploying outside of "main" and "develop" branches
+#/bin/bash
+
+echo "VERCEL_GIT_COMMIT_REF: $VERCEL_GIT_COMMIT_REF"
+
 if [["$VERCEL_GIT_COMMIT_REF" != "main" && "$VERCEL_GIT_COMMIT_BRANCH" != "develop"]] ; then
     echo "Skipping build for branch $VERCEL_GIT_BRANCH"
     exit 0;
