@@ -13,7 +13,7 @@ import errorHandler from "./api/v1/middleware/errorHandler";
 const app: Express = express();
 
 // test comment added for manual deployment
-
+console.log("Trying deployment trigger");
 dotenv.config();
 
 // add morgan middleware, combined format logs info about each HTTP request
