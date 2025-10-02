@@ -1,0 +1,14 @@
+name: Deploy Preview
+
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - develop
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
