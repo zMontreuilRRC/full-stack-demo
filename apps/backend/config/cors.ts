@@ -11,7 +11,7 @@ const corsOptions: CorsOptions = {
         if(allowedOrigins.includes(origin) || !origin) {
             callback(null, true);
         } else {
-            callback(new Error(`${origin} Not allowed by CORS restriction`), false);
+            callback(new Error(`${origin} Not allowed by CORS restriction ${allowedOrigins}`), false);
         }
     },
     // allow specific headers, methods, and inclusion of credentials
