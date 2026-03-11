@@ -20,7 +20,7 @@ export function usePopup():
             clearTimeout(timeoutRef.current);
         }
 
-        timeoutRef.current = setTimeout(() => {
+        timeoutRef.current = window.setTimeout(() => {
             setVisible(false);
         }, 3000);
     }
