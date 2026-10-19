@@ -9,5 +9,13 @@ export default defineConfig({
   plugins: [react()] as ViteUserConfig["plugins"],
   test: {
     environment: 'jsdom'
-  }
+  },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+    },
+  },
 })

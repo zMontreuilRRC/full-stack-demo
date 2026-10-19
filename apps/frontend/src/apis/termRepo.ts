@@ -7,7 +7,8 @@ type TermResponseJSON = {message: String, data: Term};
 
 // Base url for backend
 // Vite provides this value from the .env file rather than dotenv package
-const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
+// const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
+const BASE_URL = "/api/v1";
 const TERM_ENDPOINT = "/terms"
 
 export async function fetchTerms(): Promise<Term[]> {

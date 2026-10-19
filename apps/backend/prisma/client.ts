@@ -1,12 +1,11 @@
-import {PrismaClient} from "@prisma/client";
+import "dotenv/config";
+import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 
-/**
- * Initialize a single PrismaClient (connection to the database) when 
- * the app first imports it.
- * 
- * This prevents multiple connections to the db from prisma
- * (see https://www.prisma.io/docs/orm/prisma-client/setup-and-configuration/instantiate-prisma-client)
- */
-let prisma = new PrismaClient();
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL!,
+});
+
+const prisma = new PrismaClient({ adapter });
 
 export default prisma;

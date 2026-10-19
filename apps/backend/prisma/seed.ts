@@ -1,7 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { termSeedData } from "./seedData";
+import { PrismaPg } from "@prisma/adapter-pg";
 
-const prisma = new PrismaClient();
+
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL!,
+});
+
+const prisma = new PrismaClient({adapter});
 
 // this method will add default values to the database
 // IT WILL CLEAR THE DB WHEN INVOKED
